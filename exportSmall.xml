@@ -1,0 +1,547 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE HealthData [
+<!-- HealthKit Export Version: 3 -->
+<!ELEMENT HealthData (ExportDate,Me,(Record|Correlation|Workout|ActivitySummary)*)>
+<!ATTLIST HealthData
+  locale CDATA #REQUIRED
+>
+<!ELEMENT ExportDate EMPTY>
+<!ATTLIST ExportDate
+  value CDATA #REQUIRED
+>
+<!ELEMENT Me EMPTY>
+<!ATTLIST Me
+  HKCharacteristicTypeIdentifierDateOfBirth         CDATA #REQUIRED
+  HKCharacteristicTypeIdentifierBiologicalSex       CDATA #REQUIRED
+  HKCharacteristicTypeIdentifierBloodType           CDATA #REQUIRED
+  HKCharacteristicTypeIdentifierFitzpatrickSkinType CDATA #REQUIRED
+>
+<!ELEMENT Record (MetadataEntry*)>
+<!ATTLIST Record
+  type          CDATA #REQUIRED
+  unit          CDATA #IMPLIED
+  value         CDATA #IMPLIED
+  sourceName    CDATA #REQUIRED
+  sourceVersion CDATA #IMPLIED
+  device        CDATA #IMPLIED
+  creationDate  CDATA #IMPLIED
+  startDate     CDATA #REQUIRED
+  endDate       CDATA #REQUIRED
+>
+<!-- Note: Any Records that appear as children of a correlation also appear as top-level records in this document. -->
+<!ELEMENT Correlation ((MetadataEntry|Record)*)>
+<!ATTLIST Correlation
+  type          CDATA #REQUIRED
+  sourceName    CDATA #REQUIRED
+  sourceVersion CDATA #IMPLIED
+  device        CDATA #IMPLIED
+  creationDate  CDATA #IMPLIED
+  startDate     CDATA #REQUIRED
+  endDate       CDATA #REQUIRED
+>
+<!ELEMENT Workout ((MetadataEntry|WorkoutEvent)*)>
+<!ATTLIST Workout
+  workoutActivityType   CDATA #REQUIRED
+  duration              CDATA #IMPLIED
+  durationUnit          CDATA #IMPLIED
+  totalDistance         CDATA #IMPLIED
+  totalDistanceUnit     CDATA #IMPLIED
+  totalEnergyBurned     CDATA #IMPLIED
+  totalEnergyBurnedUnit CDATA #IMPLIED
+  sourceName            CDATA #REQUIRED
+  sourceVersion         CDATA #IMPLIED
+  device                CDATA #IMPLIED
+  creationDate          CDATA #IMPLIED
+  startDate             CDATA #REQUIRED
+  endDate               CDATA #REQUIRED
+>
+<!ELEMENT WorkoutEvent EMPTY>
+<!ATTLIST WorkoutEvent
+  type CDATA #REQUIRED
+  date CDATA #REQUIRED
+>
+<!ELEMENT ActivitySummary EMPTY>
+<!ATTLIST ActivitySummary
+  dateComponents           CDATA #IMPLIED
+  activeEnergyBurned       CDATA #IMPLIED
+  activeEnergyBurnedGoal   CDATA #IMPLIED
+  activeEnergyBurnedUnit   CDATA #IMPLIED
+  appleExerciseTime        CDATA #IMPLIED
+  appleExerciseTimeGoal    CDATA #IMPLIED
+  appleStandHours          CDATA #IMPLIED
+  appleStandHoursGoal      CDATA #IMPLIED
+>
+<!ELEMENT MetadataEntry EMPTY>
+<!ATTLIST MetadataEntry
+  key   CDATA #REQUIRED
+  value CDATA #REQUIRED
+>
+]>
+<HealthData locale="en_US">
+ <ExportDate value="2017-11-07 10:05:13 +0200"/>
+ <Me HKCharacteristicTypeIdentifierDateOfBirth="" HKCharacteristicTypeIdentifierBiologicalSex="HKBiologicalSexNotSet" HKCharacteristicTypeIdentifierBloodType="HKBloodTypeNotSet" HKCharacteristicTypeIdentifierFitzpatrickSkinType="HKFitzpatrickSkinTypeNotSet"/>
+ <Record type="HKQuantityTypeIdentifierBloodGlucose" sourceName="Health" sourceVersion="10.2.1" unit="mg/dL" creationDate="2017-03-30 09:29:59 +0200" startDate="2017-03-30 09:29:00 +0200" endDate="2017-03-30 09:29:00 +0200" value="81">
+  <MetadataEntry key="HKWasUserEntered" value="1"/>
+ </Record>
+ <Record type="HKQuantityTypeIdentifierBloodGlucose" sourceName="Health" sourceVersion="10.3.1" unit="mg/dL" creationDate="2017-05-23 09:49:16 +0200" startDate="2017-05-23 09:49:00 +0200" endDate="2017-05-23 09:49:00 +0200" value="90">
+  <MetadataEntry key="HKWasUserEntered" value="1"/>
+ </Record>
+ <Record type="HKQuantityTypeIdentifierBloodGlucose" sourceName="Health" sourceVersion="10.3.1" unit="mg/dL" creationDate="2017-05-23 11:07:46 +0200" startDate="2017-05-23 11:07:00 +0200" endDate="2017-05-23 11:07:00 +0200" value="80">
+  <MetadataEntry key="HKWasUserEntered" value="1"/>
+ </Record>
+ <Record type="HKQuantityTypeIdentifierBloodGlucose" sourceName="Health" sourceVersion="10.3.1" unit="mg/dL" creationDate="2017-05-23 12:42:27 +0200" startDate="2017-05-23 12:42:00 +0200" endDate="2017-05-23 12:42:00 +0200" value="115">
+  <MetadataEntry key="HKWasUserEntered" value="1"/>
+ </Record>
+ <Record type="HKQuantityTypeIdentifierBloodGlucose" sourceName="Health" sourceVersion="10.3.1" unit="mg/dL" creationDate="2017-05-24 13:43:46 +0200" startDate="2017-05-24 13:43:00 +0200" endDate="2017-05-24 13:43:00 +0200" value="666">
+  <MetadataEntry key="HKWasUserEntered" value="1"/>
+ </Record>
+ <Record type="HKQuantityTypeIdentifierBloodGlucose" sourceName="mySugr" sourceVersion="1661" unit="mg/dL" creationDate="2017-05-24 14:00:05 +0200" startDate="2017-05-24 13:56:15 +0200" endDate="2017-05-24 13:56:15 +0200" value="166">
+  <MetadataEntry key="HKExternalUUID" value="4F4542BB-252C-4525-B744-3D8FD424242F"/>
+ </Record>
+ <Record type="HKQuantityTypeIdentifierBloodGlucose" sourceName="One Drop" sourceVersion="3.8.0.0" unit="mg/dL" creationDate="2017-05-24 14:07:09 +0200" startDate="2017-05-24 13:56:15 +0200" endDate="2017-05-24 13:56:15 +0200" value="166">
+  <MetadataEntry key="App Source" value="OneDrop"/>
+  <MetadataEntry key="HKWasUserEntered" value="0"/>
+  <MetadataEntry key="HKExternalUUID" value="cGUtCSb2TIwLQwlHMvxQbbRv9ZiiAh9j"/>
+ </Record>
+ <Record type="HKQuantityTypeIdentifierBloodGlucose" sourceName="One Drop" sourceVersion="3.8.0.0" unit="mg/dL" creationDate="2017-05-24 14:07:09 +0200" startDate="2017-05-23 09:49:00 +0200" endDate="2017-05-23 09:49:00 +0200" value="90">
+  <MetadataEntry key="App Source" value="OneDrop"/>
+  <MetadataEntry key="HKWasUserEntered" value="0"/>
+  <MetadataEntry key="HKExternalUUID" value="75k8dkEN1ogbmbDPc7BNse4ovF5dIewc"/>
+ </Record>
+ <Record type="HKQuantityTypeIdentifierBloodGlucose" sourceName="One Drop" sourceVersion="3.8.0.0" unit="mg/dL" creationDate="2017-05-24 14:07:09 +0200" startDate="2017-05-24 13:37:44 +0200" endDate="2017-05-24 13:37:44 +0200" value="98">
+  <MetadataEntry key="App Source" value="OneDrop"/>
+  <MetadataEntry key="HKWasUserEntered" value="0"/>
+  <MetadataEntry key="HKExternalUUID" value="lwltJM2erH14SwoCR8MMHP6SoSsvON4E"/>
+ </Record>
+ <Record type="HKQuantityTypeIdentifierBloodGlucose" sourceName="One Drop" sourceVersion="3.8.0.0" unit="mg/dL" creationDate="2017-05-24 14:07:09 +0200" startDate="2017-05-23 11:07:00 +0200" endDate="2017-05-23 11:07:00 +0200" value="80">
+  <MetadataEntry key="App Source" value="OneDrop"/>
+  <MetadataEntry key="HKWasUserEntered" value="0"/>
+  <MetadataEntry key="HKExternalUUID" value="qUrF43plTnosXfg6OzMC4vIt5QsZVFFm"/>
+ </Record>
+ <Record type="HKQuantityTypeIdentifierBloodGlucose" sourceName="One Drop" sourceVersion="3.8.0.0" unit="mg/dL" creationDate="2017-05-24 14:07:09 +0200" startDate="2017-05-23 12:42:00 +0200" endDate="2017-05-23 12:42:00 +0200" value="115">
+  <MetadataEntry key="App Source" value="OneDrop"/>
+  <MetadataEntry key="HKWasUserEntered" value="0"/>
+  <MetadataEntry key="HKExternalUUID" value="3NbkZA6VbvH9qQXWYVHZOEQI2fn1nfZ0"/>
+ </Record>
+ <Record type="HKQuantityTypeIdentifierBloodGlucose" sourceName="One Drop" sourceVersion="3.8.0.0" unit="mg/dL" creationDate="2017-05-24 14:07:09 +0200" startDate="2017-05-24 13:43:00 +0200" endDate="2017-05-24 13:43:00 +0200" value="666">
+  <MetadataEntry key="App Source" value="OneDrop"/>
+  <MetadataEntry key="HKWasUserEntered" value="0"/>
+  <MetadataEntry key="HKExternalUUID" value="yv0zIuHmV075DrhjtROseVHVf0MdqXus"/>
+ </Record>
+ <Record type="HKQuantityTypeIdentifierBloodGlucose" sourceName="One Drop" sourceVersion="3.8.0.0" unit="mg/dL" creationDate="2017-05-24 14:07:16 +0200" startDate="2017-05-24 14:07:11 +0200" endDate="2017-05-24 14:07:11 +0200" value="58">
+  <MetadataEntry key="App Source" value="OneDrop"/>
+  <MetadataEntry key="HKWasUserEntered" value="1"/>
+  <MetadataEntry key="HKExternalUUID" value="PfaYfThcQaCQlXFkSAH3W4SFSbGtPW3t"/>
+ </Record>
+ <Record type="HKQuantityTypeIdentifierBloodGlucose" sourceName="One Drop" sourceVersion="3.8.0.0" unit="mg/dL" creationDate="2017-05-24 16:07:48 +0200" startDate="2017-05-24 14:33:16 +0200" endDate="2017-05-24 14:33:16 +0200" value="70">
+  <MetadataEntry key="App Source" value="OneDrop"/>
+  <MetadataEntry key="HKWasUserEntered" value="0"/>
+  <MetadataEntry key="HKExternalUUID" value="MquxWsXwnwYjNuuvW93xPmFNkVZ7h7zX"/>
+ </Record>
+ <Record type="HKQuantityTypeIdentifierBloodGlucose" sourceName="Health" sourceVersion="10.3.1" unit="mg/dL" creationDate="2017-05-25 13:58:55 +0200" startDate="2017-05-25 13:58:00 +0200" endDate="2017-05-25 13:58:00 +0200" value="99">
+  <MetadataEntry key="HKWasUserEntered" value="1"/>
+ </Record>
+ <Record type="HKQuantityTypeIdentifierBloodGlucose" sourceName="mySugr" sourceVersion="1661" unit="mg/dL" creationDate="2017-05-25 14:01:27 +0200" startDate="2017-05-25 13:58:54 +0200" endDate="2017-05-25 13:58:54 +0200" value="111">
+  <MetadataEntry key="HKExternalUUID" value="AD185FE9-F7C1-43B9-9DFF-CB5BCA40E1B2"/>
+ </Record>
+ <Record type="HKQuantityTypeIdentifierBloodGlucose" sourceName="One Drop" sourceVersion="3.8.0.0" unit="mg/dL" creationDate="2017-05-25 14:02:29 +0200" startDate="2017-05-25 13:58:54 +0200" endDate="2017-05-25 13:58:54 +0200" value="111">
+  <MetadataEntry key="App Source" value="OneDrop"/>
+  <MetadataEntry key="HKWasUserEntered" value="0"/>
+  <MetadataEntry key="HKExternalUUID" value="kJj8huH67dMXMUTuE5AyO7PPbsSugEvV"/>
+ </Record>
+ 
+ </Record>
+ <Record type="HKCategoryTypeIdentifierSleepAnalysis" sourceName="Pillow" sourceVersion="096" creationDate="2017-06-20 06:27:52 +0200" startDate="2017-06-19 21:41:16 +0200" endDate="2017-06-20 06:27:51 +0200" value="HKCategoryValueSleepAnalysisAsleep">
+  <MetadataEntry key="HKTimeZone" value="Asia/Jerusalem"/>
+ </Record>
+ <Record type="HKCategoryTypeIdentifierSleepAnalysis" sourceName="Pillow" sourceVersion="096" creationDate="2017-06-20 06:27:52 +0200" startDate="2017-06-19 21:41:16 +0200" endDate="2017-06-20 06:27:51 +0200" value="HKCategoryValueSleepAnalysisInBed">
+  <MetadataEntry key="HKTimeZone" value="Asia/Jerusalem"/>
+ </Record>
+ <Record type="HKCategoryTypeIdentifierSleepAnalysis" sourceName="SleepTrack" sourceVersion="3" creationDate="2017-07-18 09:23:37 +0200" startDate="2017-06-19 21:39:22 +0200" endDate="2017-06-20 06:28:13 +0200" value="HKCategoryValueSleepAnalysisAsleep"/>
+ <Record type="HKCategoryTypeIdentifierSleepAnalysis" sourceName="Health" sourceVersion="10.3.1" creationDate="2017-06-20 14:22:51 +0200" startDate="2017-06-20 11:00:00 +0200" endDate="2017-06-20 13:00:00 +0200" value="HKCategoryValueSleepAnalysisAsleep">
+  <MetadataEntry key="HKWasUserEntered" value="1"/>
+ </Record>
+  <Record type="HKQuantityTypeIdentifierDietaryProtein" sourceName="Nutrino" sourceVersion="2.15.0.6" unit="g" creationDate="2017-11-02 11:21:48 +0200" startDate="2017-11-03 00:00:00 +0200" endDate="2017-11-03 00:00:00 +0200" value="18">
+   <MetadataEntry key="Meal" value="meal"/>
+   <MetadataEntry key="HKFoodType" value="Super Berry Smoothie"/>
+  </Record>
+  <Record type="HKQuantityTypeIdentifierDietaryFatTotal" sourceName="Nutrino" sourceVersion="2.15.0.6" unit="g" creationDate="2017-11-02 11:21:48 +0200" startDate="2017-11-03 00:00:00 +0200" endDate="2017-11-03 00:00:00 +0200" value="15">
+   <MetadataEntry key="Meal" value="meal"/>
+   <MetadataEntry key="HKFoodType" value="Super Berry Smoothie"/>
+  </Record>
+  <Record type="HKQuantityTypeIdentifierDietaryEnergyConsumed" sourceName="Nutrino" sourceVersion="2.15.0.6" unit="kcal" creationDate="2017-11-02 11:21:48 +0200" startDate="2017-11-03 00:00:00 +0200" endDate="2017-11-03 00:00:00 +0200" value="540">
+   <MetadataEntry key="Meal" value="meal"/>
+   <MetadataEntry key="HKFoodType" value="Super Berry Smoothie"/>
+  </Record>
+ </Correlation>
+ <Correlation type="HKCorrelationTypeIdentifierFood" sourceName="Nutrino" sourceVersion="2.15.0.6" creationDate="2017-11-02 11:22:21 +0200" startDate="2017-11-03 00:00:00 +0200" endDate="2017-11-03 00:00:00 +0200">
+  <MetadataEntry key="HKExternalUUID" value="acu0jkcg#AV98CcuAPgcAXyyTJ4Xn"/>
+  <MetadataEntry key="HKFoodType" value="Power Pooch Smoothies"/>
+  <Record type="HKQuantityTypeIdentifierDietaryFatTotal" sourceName="Nutrino" sourceVersion="2.15.0.6" unit="g" creationDate="2017-11-02 11:22:21 +0200" startDate="2017-11-03 00:00:00 +0200" endDate="2017-11-03 00:00:00 +0200" value="1.5">
+   <MetadataEntry key="Meal" value="meal"/>
+   <MetadataEntry key="HKFoodType" value="Power Pooch Smoothies"/>
+  </Record>
+  <Record type="HKQuantityTypeIdentifierDietaryCarbohydrates" sourceName="Nutrino" sourceVersion="2.15.0.6" unit="g" creationDate="2017-11-02 11:22:21 +0200" startDate="2017-11-03 00:00:00 +0200" endDate="2017-11-03 00:00:00 +0200" value="26">
+   <MetadataEntry key="Meal" value="meal"/>
+   <MetadataEntry key="HKFoodType" value="Power Pooch Smoothies"/>
+  </Record>
+  <Record type="HKQuantityTypeIdentifierDietaryProtein" sourceName="Nutrino" sourceVersion="2.15.0.6" unit="g" creationDate="2017-11-02 11:22:21 +0200" startDate="2017-11-03 00:00:00 +0200" endDate="2017-11-03 00:00:00 +0200" value="3">
+   <MetadataEntry key="Meal" value="meal"/>
+   <MetadataEntry key="HKFoodType" value="Power Pooch Smoothies"/>
+  </Record>
+  <Record type="HKQuantityTypeIdentifierDietaryEnergyConsumed" sourceName="Nutrino" sourceVersion="2.15.0.6" unit="kcal" creationDate="2017-11-02 11:22:21 +0200" startDate="2017-11-03 00:00:00 +0200" endDate="2017-11-03 00:00:00 +0200" value="130">
+   <MetadataEntry key="Meal" value="meal"/>
+   <MetadataEntry key="HKFoodType" value="Power Pooch Smoothies"/>
+  </Record>
+ </Correlation>
+ <Correlation type="HKCorrelationTypeIdentifierFood" sourceName="Nutrino" sourceVersion="2.15.0.6" creationDate="2017-11-02 11:22:21 +0200" startDate="2017-11-03 00:00:00 +0200" endDate="2017-11-03 00:00:00 +0200">
+  <MetadataEntry key="HKExternalUUID" value="acu0jkcg#AV98CcuAPgcAXyyTJ4Xo"/>
+  <MetadataEntry key="HKFoodType" value="Zucchini-Basil Soup"/>
+  <Record type="HKQuantityTypeIdentifierDietaryProtein" sourceName="Nutrino" sourceVersion="2.15.0.6" unit="g" creationDate="2017-11-02 11:22:21 +0200" startDate="2017-11-03 00:00:00 +0200" endDate="2017-11-03 00:00:00 +0200" value="2">
+   <MetadataEntry key="Meal" value="meal"/>
+   <MetadataEntry key="HKFoodType" value="Zucchini-Basil Soup"/>
+  </Record>
+  <Record type="HKQuantityTypeIdentifierDietaryEnergyConsumed" sourceName="Nutrino" sourceVersion="2.15.0.6" unit="kcal" creationDate="2017-11-02 11:22:21 +0200" startDate="2017-11-03 00:00:00 +0200" endDate="2017-11-03 00:00:00 +0200" value="140">
+   <MetadataEntry key="Meal" value="meal"/>
+   <MetadataEntry key="HKFoodType" value="Zucchini-Basil Soup"/>
+  </Record>
+  <Record type="HKQuantityTypeIdentifierDietaryCarbohydrates" sourceName="Nutrino" sourceVersion="2.15.0.6" unit="g" creationDate="2017-11-02 11:22:21 +0200" startDate="2017-11-03 00:00:00 +0200" endDate="2017-11-03 00:00:00 +0200" value="8">
+   <MetadataEntry key="Meal" value="meal"/>
+   <MetadataEntry key="HKFoodType" value="Zucchini-Basil Soup"/>
+  </Record>
+  <Record type="HKQuantityTypeIdentifierDietaryFatTotal" sourceName="Nutrino" sourceVersion="2.15.0.6" unit="g" creationDate="2017-11-02 11:22:21 +0200" startDate="2017-11-03 00:00:00 +0200" endDate="2017-11-03 00:00:00 +0200" value="11">
+   <MetadataEntry key="Meal" value="meal"/>
+   <MetadataEntry key="HKFoodType" value="Zucchini-Basil Soup"/>
+  </Record>
+ </Correlation>
+ <Correlation type="HKCorrelationTypeIdentifierFood" sourceName="Nutrino" sourceVersion="2.15.0.6" creationDate="2017-11-02 11:22:21 +0200" startDate="2017-11-03 00:00:00 +0200" endDate="2017-11-03 00:00:00 +0200">
+  <MetadataEntry key="HKExternalUUID" value="acu0jkcg#AV98CcuAPgcAXyyTJ4Xp"/>
+  <MetadataEntry key="HKFoodType" value="Air-Popped Popcorn"/>
+  <Record type="HKQuantityTypeIdentifierDietaryCarbohydrates" sourceName="Nutrino" sourceVersion="2.15.0.6" unit="g" creationDate="2017-11-02 11:22:21 +0200" startDate="2017-11-03 00:00:00 +0200" endDate="2017-11-03 00:00:00 +0200" value="6.23">
+   <MetadataEntry key="Meal" value="meal"/>
+   <MetadataEntry key="HKFoodType" value="Air-Popped Popcorn"/>
+  </Record>
+  <Record type="HKQuantityTypeIdentifierDietaryFatTotal" sourceName="Nutrino" sourceVersion="2.15.0.6" unit="g" creationDate="2017-11-02 11:22:21 +0200" startDate="2017-11-03 00:00:00 +0200" endDate="2017-11-03 00:00:00 +0200" value="0.34">
+   <MetadataEntry key="Meal" value="meal"/>
+   <MetadataEntry key="HKFoodType" value="Air-Popped Popcorn"/>
+  </Record>
+  <Record type="HKQuantityTypeIdentifierDietaryEnergyConsumed" sourceName="Nutrino" sourceVersion="2.15.0.6" unit="kcal" creationDate="2017-11-02 11:22:21 +0200" startDate="2017-11-03 00:00:00 +0200" endDate="2017-11-03 00:00:00 +0200" value="30.6">
+   <MetadataEntry key="Meal" value="meal"/>
+   <MetadataEntry key="HKFoodType" value="Air-Popped Popcorn"/>
+  </Record>
+  <Record type="HKQuantityTypeIdentifierDietaryProtein" sourceName="Nutrino" sourceVersion="2.15.0.6" unit="g" creationDate="2017-11-02 11:22:21 +0200" startDate="2017-11-03 00:00:00 +0200" endDate="2017-11-03 00:00:00 +0200" value="1">
+   <MetadataEntry key="Meal" value="meal"/>
+   <MetadataEntry key="HKFoodType" value="Air-Popped Popcorn"/>
+  </Record>
+ </Correlation>
+ <Correlation type="HKCorrelationTypeIdentifierFood" sourceName="Nutrino" sourceVersion="2.15.0.6" creationDate="2017-11-02 11:22:21 +0200" startDate="2017-11-03 00:00:00 +0200" endDate="2017-11-03 00:00:00 +0200">
+  <MetadataEntry key="HKExternalUUID" value="acu0jkcg#AV98CcuAPgcAXyyTJ4Xq"/>
+  <MetadataEntry key="HKFoodType" value="Red Snapper &amp; Pineapple Salsa"/>
+  <Record type="HKQuantityTypeIdentifierDietaryProtein" sourceName="Nutrino" sourceVersion="2.15.0.6" unit="g" creationDate="2017-11-02 11:22:21 +0200" startDate="2017-11-03 00:00:00 +0200" endDate="2017-11-03 00:00:00 +0200" value="4">
+   <MetadataEntry key="Meal" value="meal"/>
+   <MetadataEntry key="HKFoodType" value="Red Snapper &amp; Pineapple Salsa"/>
+  </Record>
+  <Record type="HKQuantityTypeIdentifierDietaryCarbohydrates" sourceName="Nutrino" sourceVersion="2.15.0.6" unit="g" creationDate="2017-11-02 11:22:21 +0200" startDate="2017-11-03 00:00:00 +0200" endDate="2017-11-03 00:00:00 +0200" value="28">
+   <MetadataEntry key="Meal" value="meal"/>
+   <MetadataEntry key="HKFoodType" value="Red Snapper &amp; Pineapple Salsa"/>
+  </Record>
+  <Record type="HKQuantityTypeIdentifierDietaryFatTotal" sourceName="Nutrino" sourceVersion="2.15.0.6" unit="g" creationDate="2017-11-02 11:22:21 +0200" startDate="2017-11-03 00:00:00 +0200" endDate="2017-11-03 00:00:00 +0200" value="7">
+   <MetadataEntry key="Meal" value="meal"/>
+   <MetadataEntry key="HKFoodType" value="Red Snapper &amp; Pineapple Salsa"/>
+  </Record>
+  <Record type="HKQuantityTypeIdentifierDietaryEnergyConsumed" sourceName="Nutrino" sourceVersion="2.15.0.6" unit="kcal" creationDate="2017-11-02 11:22:21 +0200" startDate="2017-11-03 00:00:00 +0200" endDate="2017-11-03 00:00:00 +0200" value="160">
+   <MetadataEntry key="Meal" value="meal"/>
+   <MetadataEntry key="HKFoodType" value="Red Snapper &amp; Pineapple Salsa"/>
+  </Record>
+ </Correlation>
+ <Correlation type="HKCorrelationTypeIdentifierFood" sourceName="Nutrino" sourceVersion="2.15.0.6" creationDate="2017-11-02 11:22:21 +0200" startDate="2017-11-03 00:00:00 +0200" endDate="2017-11-03 00:00:00 +0200">
+  <MetadataEntry key="HKExternalUUID" value="acu0jkcg#AV98CcuAPgcAXyyTJ4Xr"/>
+  <MetadataEntry key="HKFoodType" value="Rosemary Crackers"/>
+  <Record type="HKQuantityTypeIdentifierDietaryCarbohydrates" sourceName="Nutrino" sourceVersion="2.15.0.6" unit="g" creationDate="2017-11-02 11:22:21 +0200" startDate="2017-11-03 00:00:00 +0200" endDate="2017-11-03 00:00:00 +0200" value="0">
+   <MetadataEntry key="Meal" value="meal"/>
+   <MetadataEntry key="HKFoodType" value="Rosemary Crackers"/>
+  </Record>
+  <Record type="HKQuantityTypeIdentifierDietaryEnergyConsumed" sourceName="Nutrino" sourceVersion="2.15.0.6" unit="kcal" creationDate="2017-11-02 11:22:21 +0200" startDate="2017-11-03 00:00:00 +0200" endDate="2017-11-03 00:00:00 +0200" value="15">
+   <MetadataEntry key="Meal" value="meal"/>
+   <MetadataEntry key="HKFoodType" value="Rosemary Crackers"/>
+  </Record>
+  <Record type="HKQuantityTypeIdentifierDietaryProtein" sourceName="Nutrino" sourceVersion="2.15.0.6" unit="g" creationDate="2017-11-02 11:22:21 +0200" startDate="2017-11-03 00:00:00 +0200" endDate="2017-11-03 00:00:00 +0200" value="1">
+   <MetadataEntry key="Meal" value="meal"/>
+   <MetadataEntry key="HKFoodType" value="Rosemary Crackers"/>
+  </Record>
+  <Record type="HKQuantityTypeIdentifierDietaryFatTotal" sourceName="Nutrino" sourceVersion="2.15.0.6" unit="g" creationDate="2017-11-02 11:22:21 +0200" startDate="2017-11-03 00:00:00 +0200" endDate="2017-11-03 00:00:00 +0200" value="1.5">
+   <MetadataEntry key="Meal" value="meal"/>
+   <MetadataEntry key="HKFoodType" value="Rosemary Crackers"/>
+  </Record>
+ </Correlation>
+ <Correlation type="HKCorrelationTypeIdentifierFood" sourceName="Nutrino" sourceVersion="2.15.0.6" creationDate="2017-11-02 11:24:14 +0200" startDate="2017-11-04 00:00:00 +0200" endDate="2017-11-04 00:00:00 +0200">
+  <MetadataEntry key="HKExternalUUID" value="acu0jkcg#AV98C457PgcAXyyTJ4ZG"/>
+  <MetadataEntry key="HKFoodType" value="Marinated Anchovy Sandwiches"/>
+  <Record type="HKQuantityTypeIdentifierDietaryFatTotal" sourceName="Nutrino" sourceVersion="2.15.0.6" unit="g" creationDate="2017-11-02 11:24:14 +0200" startDate="2017-11-04 00:00:00 +0200" endDate="2017-11-04 00:00:00 +0200" value="45">
+   <MetadataEntry key="Meal" value="meal"/>
+   <MetadataEntry key="HKFoodType" value="Marinated Anchovy Sandwiches"/>
+  </Record>
+  <Record type="HKQuantityTypeIdentifierDietaryCarbohydrates" sourceName="Nutrino" sourceVersion="2.15.0.6" unit="g" creationDate="2017-11-02 11:24:14 +0200" startDate="2017-11-04 00:00:00 +0200" endDate="2017-11-04 00:00:00 +0200" value="57">
+   <MetadataEntry key="Meal" value="meal"/>
+   <MetadataEntry key="HKFoodType" value="Marinated Anchovy Sandwiches"/>
+  </Record>
+  <Record type="HKQuantityTypeIdentifierDietaryEnergyConsumed" sourceName="Nutrino" sourceVersion="2.15.0.6" unit="kcal" creationDate="2017-11-02 11:24:14 +0200" startDate="2017-11-04 00:00:00 +0200" endDate="2017-11-04 00:00:00 +0200" value="750">
+   <MetadataEntry key="Meal" value="meal"/>
+   <MetadataEntry key="HKFoodType" value="Marinated Anchovy Sandwiches"/>
+  </Record>
+  <Record type="HKQuantityTypeIdentifierDietaryProtein" sourceName="Nutrino" sourceVersion="2.15.0.6" unit="g" creationDate="2017-11-02 11:24:14 +0200" startDate="2017-11-04 00:00:00 +0200" endDate="2017-11-04 00:00:00 +0200" value="27">
+   <MetadataEntry key="Meal" value="meal"/>
+   <MetadataEntry key="HKFoodType" value="Marinated Anchovy Sandwiches"/>
+  </Record>
+ </Correlation>
+ <Correlation type="HKCorrelationTypeIdentifierFood" sourceName="Nutrino" sourceVersion="2.15.0.6" creationDate="2017-11-02 11:24:15 +0200" startDate="2017-11-04 00:00:00 +0200" endDate="2017-11-04 00:00:00 +0200">
+  <MetadataEntry key="HKExternalUUID" value="acu0jkcg#AV98C457PgcAXyyTJ4ZH"/>
+  <MetadataEntry key="HKFoodType" value="Salmon With Cherry Tomatoes"/>
+  <Record type="HKQuantityTypeIdentifierDietaryEnergyConsumed" sourceName="Nutrino" sourceVersion="2.15.0.6" unit="kcal" creationDate="2017-11-02 11:24:15 +0200" startDate="2017-11-04 00:00:00 +0200" endDate="2017-11-04 00:00:00 +0200" value="1080">
+   <MetadataEntry key="Meal" value="meal"/>
+   <MetadataEntry key="HKFoodType" value="Salmon With Cherry Tomatoes"/>
+  </Record>
+  <Record type="HKQuantityTypeIdentifierDietaryProtein" sourceName="Nutrino" sourceVersion="2.15.0.6" unit="g" creationDate="2017-11-02 11:24:15 +0200" startDate="2017-11-04 00:00:00 +0200" endDate="2017-11-04 00:00:00 +0200" value="78">
+   <MetadataEntry key="Meal" value="meal"/>
+   <MetadataEntry key="HKFoodType" value="Salmon With Cherry Tomatoes"/>
+  </Record>
+  <Record type="HKQuantityTypeIdentifierDietaryFatTotal" sourceName="Nutrino" sourceVersion="2.15.0.6" unit="g" creationDate="2017-11-02 11:24:15 +0200" startDate="2017-11-04 00:00:00 +0200" endDate="2017-11-04 00:00:00 +0200" value="64">
+   <MetadataEntry key="Meal" value="meal"/>
+   <MetadataEntry key="HKFoodType" value="Salmon With Cherry Tomatoes"/>
+  </Record>
+  <Record type="HKQuantityTypeIdentifierDietaryCarbohydrates" sourceName="Nutrino" sourceVersion="2.15.0.6" unit="g" creationDate="2017-11-02 11:24:15 +0200" startDate="2017-11-04 00:00:00 +0200" endDate="2017-11-04 00:00:00 +0200" value="42">
+   <MetadataEntry key="Meal" value="meal"/>
+   <MetadataEntry key="HKFoodType" value="Salmon With Cherry Tomatoes"/>
+  </Record>
+ </Correlation>
+ <Correlation type="HKCorrelationTypeIdentifierFood" sourceName="Nutrino" sourceVersion="2.15.0.6" creationDate="2017-11-05 10:22:03 +0200" startDate="2017-11-05 00:00:00 +0200" endDate="2017-11-05 00:00:00 +0200">
+  <MetadataEntry key="HKExternalUUID" value="acu0jkcg#AV-LRbZrPgcAXyyTNu-s"/>
+  <MetadataEntry key="HKFoodType" value="Bananas"/>
+  <Record type="HKQuantityTypeIdentifierDietaryProtein" sourceName="Nutrino" sourceVersion="2.15.0.6" unit="g" creationDate="2017-11-05 10:22:03 +0200" startDate="2017-11-05 00:00:00 +0200" endDate="2017-11-05 00:00:00 +0200" value="1.2862">
+   <MetadataEntry key="Meal" value="meal"/>
+   <MetadataEntry key="HKFoodType" value="Bananas"/>
+  </Record>
+  <Record type="HKQuantityTypeIdentifierDietaryEnergyConsumed" sourceName="Nutrino" sourceVersion="2.15.0.6" unit="kcal" creationDate="2017-11-05 10:22:03 +0200" startDate="2017-11-05 00:00:00 +0200" endDate="2017-11-05 00:00:00 +0200" value="104.631">
+   <MetadataEntry key="Meal" value="meal"/>
+   <MetadataEntry key="HKFoodType" value="Bananas"/>
+  </Record>
+  <Record type="HKQuantityTypeIdentifierDietaryCarbohydrates" sourceName="Nutrino" sourceVersion="2.15.0.6" unit="g" creationDate="2017-11-05 10:22:03 +0200" startDate="2017-11-05 00:00:00 +0200" endDate="2017-11-05 00:00:00 +0200" value="26.9512">
+   <MetadataEntry key="Meal" value="meal"/>
+   <MetadataEntry key="HKFoodType" value="Bananas"/>
+  </Record>
+  <Record type="HKQuantityTypeIdentifierDietaryFatTotal" sourceName="Nutrino" sourceVersion="2.15.0.6" unit="g" creationDate="2017-11-05 10:22:03 +0200" startDate="2017-11-05 00:00:00 +0200" endDate="2017-11-05 00:00:00 +0200" value="0.3894">
+   <MetadataEntry key="Meal" value="meal"/>
+   <MetadataEntry key="HKFoodType" value="Bananas"/>
+  </Record>
+ </Correlation>
+ <Correlation type="HKCorrelationTypeIdentifierFood" sourceName="Nutrino" sourceVersion="2.15.0.6" creationDate="2017-11-05 10:28:00 +0200" startDate="2017-11-05 00:00:00 +0200" endDate="2017-11-05 00:00:00 +0200">
+  <MetadataEntry key="HKExternalUUID" value="acu0jkcg#AV-LSysi8akmkjRi6_IH"/>
+  <MetadataEntry key="HKFoodType" value="Bananas"/>
+  <Record type="HKQuantityTypeIdentifierDietaryCarbohydrates" sourceName="Nutrino" sourceVersion="2.15.0.6" unit="g" creationDate="2017-11-05 10:28:00 +0200" startDate="2017-11-05 00:00:00 +0200" endDate="2017-11-05 00:00:00 +0200" value="26.9512">
+   <MetadataEntry key="Meal" value="meal"/>
+   <MetadataEntry key="HKFoodType" value="Bananas"/>
+  </Record>
+  <Record type="HKQuantityTypeIdentifierDietaryProtein" sourceName="Nutrino" sourceVersion="2.15.0.6" unit="g" creationDate="2017-11-05 10:28:00 +0200" startDate="2017-11-05 00:00:00 +0200" endDate="2017-11-05 00:00:00 +0200" value="1.2862">
+   <MetadataEntry key="Meal" value="meal"/>
+   <MetadataEntry key="HKFoodType" value="Bananas"/>
+  </Record>
+  <Record type="HKQuantityTypeIdentifierDietaryEnergyConsumed" sourceName="Nutrino" sourceVersion="2.15.0.6" unit="kcal" creationDate="2017-11-05 10:28:00 +0200" startDate="2017-11-05 00:00:00 +0200" endDate="2017-11-05 00:00:00 +0200" value="104.631">
+   <MetadataEntry key="Meal" value="meal"/>
+   <MetadataEntry key="HKFoodType" value="Bananas"/>
+  </Record>
+  <Record type="HKQuantityTypeIdentifierDietaryFatTotal" sourceName="Nutrino" sourceVersion="2.15.0.6" unit="g" creationDate="2017-11-05 10:28:00 +0200" startDate="2017-11-05 00:00:00 +0200" endDate="2017-11-05 00:00:00 +0200" value="0.3894">
+   <MetadataEntry key="Meal" value="meal"/>
+   <MetadataEntry key="HKFoodType" value="Bananas"/>
+  </Record>
+ </Correlation>
+ <Correlation type="HKCorrelationTypeIdentifierFood" sourceName="Nutrino" sourceVersion="2.15.0.6" creationDate="2017-11-05 10:28:14 +0200" startDate="2017-11-05 00:00:00 +0200" endDate="2017-11-05 00:00:00 +0200">
+  <MetadataEntry key="HKExternalUUID" value="acu0jkcg#AV-LS2J2PgcAXyyTNvCi"/>
+  <MetadataEntry key="HKFoodType" value="Cucumber"/>
+  <Record type="HKQuantityTypeIdentifierDietaryCarbohydrates" sourceName="Nutrino" sourceVersion="2.15.0.6" unit="g" creationDate="2017-11-05 10:28:14 +0200" startDate="2017-11-05 00:00:00 +0200" endDate="2017-11-05 00:00:00 +0200" value="7.2963">
+   <MetadataEntry key="Meal" value="meal"/>
+   <MetadataEntry key="HKFoodType" value="Cucumber"/>
+  </Record>
+  <Record type="HKQuantityTypeIdentifierDietaryEnergyConsumed" sourceName="Nutrino" sourceVersion="2.15.0.6" unit="kcal" creationDate="2017-11-05 10:28:14 +0200" startDate="2017-11-05 00:00:00 +0200" endDate="2017-11-05 00:00:00 +0200" value="31.2354">
+   <MetadataEntry key="Meal" value="meal"/>
+   <MetadataEntry key="HKFoodType" value="Cucumber"/>
+  </Record>
+  <Record type="HKQuantityTypeIdentifierDietaryProtein" sourceName="Nutrino" sourceVersion="2.15.0.6" unit="g" creationDate="2017-11-05 10:28:14 +0200" startDate="2017-11-05 00:00:00 +0200" endDate="2017-11-05 00:00:00 +0200" value="1.3065">
+   <MetadataEntry key="Meal" value="meal"/>
+   <MetadataEntry key="HKFoodType" value="Cucumber"/>
+  </Record>
+  <Record type="HKQuantityTypeIdentifierDietaryFatTotal" sourceName="Nutrino" sourceVersion="2.15.0.6" unit="g" creationDate="2017-11-05 10:28:14 +0200" startDate="2017-11-05 00:00:00 +0200" endDate="2017-11-05 00:00:00 +0200" value="0.2211">
+   <MetadataEntry key="Meal" value="meal"/>
+   <MetadataEntry key="HKFoodType" value="Cucumber"/>
+  </Record>
+ </Correlation>
+ <Correlation type="HKCorrelationTypeIdentifierFood" sourceName="Nutrino" sourceVersion="2.15.0.6" creationDate="2017-11-05 10:28:37 +0200" startDate="2017-11-05 00:00:00 +0200" endDate="2017-11-05 00:00:00 +0200">
+  <MetadataEntry key="HKExternalUUID" value="acu0jkcg#AV-LS7uWPgcAXyyTNvCp"/>
+  <MetadataEntry key="HKFoodType" value="Cucumber"/>
+  <Record type="HKQuantityTypeIdentifierDietaryCarbohydrates" sourceName="Nutrino" sourceVersion="2.15.0.6" unit="g" creationDate="2017-11-05 10:28:37 +0200" startDate="2017-11-05 00:00:00 +0200" endDate="2017-11-05 00:00:00 +0200" value="20.6811">
+   <MetadataEntry key="Meal" value="meal"/>
+   <MetadataEntry key="HKFoodType" value="Cucumber"/>
+  </Record>
+  <Record type="HKQuantityTypeIdentifierDietaryFatTotal" sourceName="Nutrino" sourceVersion="2.15.0.6" unit="g" creationDate="2017-11-05 10:28:37 +0200" startDate="2017-11-05 00:00:00 +0200" endDate="2017-11-05 00:00:00 +0200" value="1.2459">
+   <MetadataEntry key="Meal" value="meal"/>
+   <MetadataEntry key="HKFoodType" value="Cucumber"/>
+  </Record>
+  <Record type="HKQuantityTypeIdentifierDietaryEnergyConsumed" sourceName="Nutrino" sourceVersion="2.15.0.6" unit="kcal" creationDate="2017-11-05 10:28:37 +0200" startDate="2017-11-05 00:00:00 +0200" endDate="2017-11-05 00:00:00 +0200" value="106.437">
+   <MetadataEntry key="Meal" value="meal"/>
+   <MetadataEntry key="HKFoodType" value="Cucumber"/>
+  </Record>
+  <Record type="HKQuantityTypeIdentifierDietaryProtein" sourceName="Nutrino" sourceVersion="2.15.0.6" unit="g" creationDate="2017-11-05 10:28:37 +0200" startDate="2017-11-05 00:00:00 +0200" endDate="2017-11-05 00:00:00 +0200" value="4.4169">
+   <MetadataEntry key="Meal" value="meal"/>
+   <MetadataEntry key="HKFoodType" value="Cucumber"/>
+  </Record>
+ </Correlation>
+ <Correlation type="HKCorrelationTypeIdentifierFood" sourceName="Nutrino" sourceVersion="2.15.1.0" creationDate="2017-11-06 13:40:30 +0200" startDate="2017-11-09 00:00:00 +0200" endDate="2017-11-09 00:00:00 +0200">
+  <MetadataEntry key="HKExternalUUID" value="acu0jkcg#AV-RIbuU8akmkjRi8QnX"/>
+  <MetadataEntry key="HKFoodType" value="Asian Kale &amp; Tofu Salad"/>
+  <Record type="HKQuantityTypeIdentifierDietaryFatTotal" sourceName="Nutrino" sourceVersion="2.15.1.0" unit="g" creationDate="2017-11-06 13:40:30 +0200" startDate="2017-11-09 00:00:00 +0200" endDate="2017-11-09 00:00:00 +0200" value="45">
+   <MetadataEntry key="Meal" value="meal"/>
+   <MetadataEntry key="HKFoodType" value="Asian Kale &amp; Tofu Salad"/>
+  </Record>
+  <Record type="HKQuantityTypeIdentifierDietaryCarbohydrates" sourceName="Nutrino" sourceVersion="2.15.1.0" unit="g" creationDate="2017-11-06 13:40:30 +0200" startDate="2017-11-09 00:00:00 +0200" endDate="2017-11-09 00:00:00 +0200" value="120">
+   <MetadataEntry key="Meal" value="meal"/>
+   <MetadataEntry key="HKFoodType" value="Asian Kale &amp; Tofu Salad"/>
+  </Record>
+  <Record type="HKQuantityTypeIdentifierDietaryEnergyConsumed" sourceName="Nutrino" sourceVersion="2.15.1.0" unit="kcal" creationDate="2017-11-06 13:40:30 +0200" startDate="2017-11-09 00:00:00 +0200" endDate="2017-11-09 00:00:00 +0200" value="1050">
+   <MetadataEntry key="Meal" value="meal"/>
+   <MetadataEntry key="HKFoodType" value="Asian Kale &amp; Tofu Salad"/>
+  </Record>
+  <Record type="HKQuantityTypeIdentifierDietaryProtein" sourceName="Nutrino" sourceVersion="2.15.1.0" unit="g" creationDate="2017-11-06 13:40:30 +0200" startDate="2017-11-09 00:00:00 +0200" endDate="2017-11-09 00:00:00 +0200" value="75">
+   <MetadataEntry key="Meal" value="meal"/>
+   <MetadataEntry key="HKFoodType" value="Asian Kale &amp; Tofu Salad"/>
+  </Record>
+ </Correlation>
+ <Correlation type="HKCorrelationTypeIdentifierFood" sourceName="Nutrino" sourceVersion="2.15.1.0" creationDate="2017-11-06 13:40:30 +0200" startDate="2017-11-09 00:00:00 +0200" endDate="2017-11-09 00:00:00 +0200">
+  <MetadataEntry key="HKExternalUUID" value="acu0jkcg#AV-RIbuU8akmkjRi8QnW"/>
+  <MetadataEntry key="HKFoodType" value="Muffin W/ Bruléed Banana"/>
+  <Record type="HKQuantityTypeIdentifierDietaryEnergyConsumed" sourceName="Nutrino" sourceVersion="2.15.1.0" unit="kcal" creationDate="2017-11-06 13:40:30 +0200" startDate="2017-11-09 00:00:00 +0200" endDate="2017-11-09 00:00:00 +0200" value="780">
+   <MetadataEntry key="Meal" value="meal"/>
+   <MetadataEntry key="HKFoodType" value="Muffin W/ Bruléed Banana"/>
+  </Record>
+ <Workout workoutActivityType="HKWorkoutActivityTypeWalking" duration="1.314199999968211" durationUnit="min" totalDistance="0" totalDistanceUnit="km" totalEnergyBurned="7" totalEnergyBurnedUnit="kcal" sourceName="Human" sourceVersion="4716" creationDate="2017-06-27 08:40:29 +0200" startDate="2017-06-26 17:51:12 +0200" endDate="2017-06-26 17:52:31 +0200">
+  <MetadataEntry key="id" value="4f7f5f59-bce2-4a5c-842b-bc955c9f0619"/>
+  <MetadataEntry key="mode" value="walking"/>
+ </Workout>
+ <Workout workoutActivityType="HKWorkoutActivityTypeCycling" duration="5.467616665363312" durationUnit="min" totalDistance="1.342420043945312" totalDistanceUnit="km" totalEnergyBurned="38" totalEnergyBurnedUnit="kcal" sourceName="Human" sourceVersion="4716" creationDate="2017-06-27 08:40:29 +0200" startDate="2017-06-26 18:08:14 +0200" endDate="2017-06-26 18:13:42 +0200">
+  <MetadataEntry key="id" value="96948934-b0bb-4d7d-a53a-20c9b097bb83"/>
+  <MetadataEntry key="mode" value="biking"/>
+ </Workout>
+ <Workout workoutActivityType="HKWorkoutActivityTypeWalking" duration="4.789850000540415" durationUnit="min" totalDistance="0.100129997253418" totalDistanceUnit="km" totalEnergyBurned="26" totalEnergyBurnedUnit="kcal" sourceName="Human" sourceVersion="4716" creationDate="2017-06-27 08:40:29 +0200" startDate="2017-06-26 18:17:19 +0200" endDate="2017-06-26 18:22:06 +0200">
+  <MetadataEntry key="id" value="1e9d8ce7-8330-41ac-909a-c62c33a3812b"/>
+  <MetadataEntry key="mode" value="walking"/>
+ </Workout>
+ <Workout workoutActivityType="HKWorkoutActivityTypeWalking" duration="22.63661666711171" durationUnit="min" totalDistance="0" totalDistanceUnit="km" totalEnergyBurned="143" totalEnergyBurnedUnit="kcal" sourceName="Human" sourceVersion="4716" creationDate="2017-06-27 08:40:29 +0200" startDate="2017-06-26 18:28:25 +0200" endDate="2017-06-26 18:51:03 +0200">
+  <MetadataEntry key="id" value="2025bf5d-3e3e-4a3d-9059-5006bf76af8e"/>
+  <MetadataEntry key="mode" value="walking"/>
+ </Workout>
+ <Workout workoutActivityType="HKWorkoutActivityTypeCycling" duration="2.840533332029978" durationUnit="min" totalDistance="0" totalDistanceUnit="km" totalEnergyBurned="13" totalEnergyBurnedUnit="kcal" sourceName="Human" sourceVersion="4716" creationDate="2017-06-27 08:40:29 +0200" startDate="2017-06-26 18:56:01 +0200" endDate="2017-06-26 18:58:51 +0200">
+  <MetadataEntry key="id" value="b4dfb20f-0d5c-42d3-8f87-e8dd519c5e3d"/>
+  <MetadataEntry key="mode" value="biking"/>
+ </Workout>
+ <Workout workoutActivityType="HKWorkoutActivityTypeRunning" duration="5.683333333333334" durationUnit="min" totalDistance="5.5" totalDistanceUnit="km" totalEnergyBurned="0" totalEnergyBurnedUnit="kcal" sourceName="Strava" sourceVersion="8217" creationDate="2017-06-27 08:33:30 +0200" startDate="2017-06-27 07:30:00 +0200" endDate="2017-06-27 07:35:41 +0200">
+  <MetadataEntry key="HKExternalUUID" value="strava://activities/1056104530"/>
+ </Workout>
+ <Workout workoutActivityType="HKWorkoutActivityTypeRunning" duration="21.75" durationUnit="min" totalDistance="0.1394" totalDistanceUnit="km" totalEnergyBurned="0" totalEnergyBurnedUnit="kcal" sourceName="Strava" sourceVersion="8217" creationDate="2017-06-27 08:59:48 +0200" startDate="2017-06-27 08:34:33 +0200" endDate="2017-06-27 08:56:18 +0200">
+  <MetadataEntry key="HKExternalUUID" value="strava://activities/1056127538"/>
+ </Workout>
+ <Workout workoutActivityType="HKWorkoutActivityTypeRunning" duration="17.45567739804586" durationUnit="min" totalDistance="0.267" totalDistanceUnit="km" totalEnergyBurned="178" totalEnergyBurnedUnit="kcal" sourceName="Runtastic" sourceVersion="7.3.0.96" creationDate="2017-06-27 10:08:38 +0200" startDate="2017-06-27 09:50:21 +0200" endDate="2017-06-27 10:08:07 +0200">
+  <MetadataEntry key="HKIndoorWorkout" value="0"/>
+  <WorkoutEvent type="HKWorkoutEventTypePause" date="2017-06-27 09:56:21 +0200"/>
+  <WorkoutEvent type="HKWorkoutEventTypeResume" date="2017-06-27 09:56:39 +0200"/>
+  <WorkoutEvent type="HKWorkoutEventTypePause" date="2017-06-27 10:08:06 +0200"/>
+ </Workout>
+ <Workout workoutActivityType="HKWorkoutActivityTypeMixedMetabolicCardioTraining" duration="30" durationUnit="min" totalDistance="0" totalDistanceUnit="km" totalEnergyBurned="100" totalEnergyBurnedUnit="kcal" sourceName="Nike Training" sourceVersion="1705091749" creationDate="2017-06-27 10:51:59 +0200" startDate="2017-06-27 08:31:08 +0200" endDate="2017-06-27 10:51:59 +0200"/>
+ <Workout workoutActivityType="HKWorkoutActivityTypeRunning" duration="68" durationUnit="min" totalDistance="10" totalDistanceUnit="km" totalEnergyBurned="380" totalEnergyBurnedUnit="kcal" sourceName="Health" sourceVersion="10.3.1" creationDate="2017-07-17 10:46:46 +0200" startDate="2017-07-17 08:00:00 +0200" endDate="2017-07-17 09:08:00 +0200">
+  <MetadataEntry key="HKWasUserEntered" value="1"/>
+ </Workout>
+ <Workout workoutActivityType="HKWorkoutActivityTypeRunning" duration="60" durationUnit="min" totalDistance="10" totalDistanceUnit="km" totalEnergyBurned="300" totalEnergyBurnedUnit="kcal" sourceName="Health" sourceVersion="10.3.1" creationDate="2017-07-17 13:13:59 +0200" startDate="2017-07-17 11:13:00 +0200" endDate="2017-07-17 12:13:00 +0200">
+  <MetadataEntry key="HKWasUserEntered" value="1"/>
+ </Workout>
+ <Workout workoutActivityType="HKWorkoutActivityTypeYoga" duration="75" durationUnit="min" totalDistance="4" totalDistanceUnit="km" totalEnergyBurned="296" totalEnergyBurnedUnit="kcal" sourceName="8fit" sourceVersion="311" creationDate="2017-07-19 10:40:05 +0200" startDate="2017-07-19 09:24:30 +0200" endDate="2017-07-19 10:39:30 +0200">
+  <MetadataEntry key="type" value="sport"/>
+  <MetadataEntry key="name" value="yoga"/>
+  <MetadataEntry key="reportID" value="bf57acbd-4115-4c62-b2ac-1461b5ba2e5a"/>
+ </Workout>
+ <Workout workoutActivityType="HKWorkoutActivityTypeFunctionalStrengthTraining" duration="7.1" durationUnit="min" totalDistance="0" totalDistanceUnit="km" totalEnergyBurned="44" totalEnergyBurnedUnit="kcal" sourceName="Fitbit Coach" sourceVersion="1422" creationDate="2017-07-19 13:20:23 +0200" startDate="2017-07-19 13:13:14 +0200" endDate="2017-07-19 13:20:20 +0200">
+  <MetadataEntry key="Session Name" value="Fit Test"/>
+  <MetadataEntry key="com.fitstar.source_application_id" value="4ff0c7bc5815071409000001"/>
+  <MetadataEntry key="HKExternalUUID" value="59503343e5e615154e0118bd"/>
+ </Workout>
+ <Workout workoutActivityType="HKWorkoutActivityTypeRunning" duration="248" durationUnit="min" totalDistance="16" totalDistanceUnit="km" totalEnergyBurned="1309.300048828125" totalEnergyBurnedUnit="kcal" sourceName="Strava" sourceVersion="8447" creationDate="2017-07-25 15:42:58 +0200" startDate="2017-07-25 11:30:34 +0200" endDate="2017-07-25 15:38:34 +0200">
+  <MetadataEntry key="HKExternalUUID" value="strava://activities/1100710972"/>
+ </Workout>
+ <Workout workoutActivityType="HKWorkoutActivityTypeMixedMetabolicCardioTraining" duration="200" durationUnit="min" totalDistance="4" totalDistanceUnit="km" totalEnergyBurned="1240" totalEnergyBurnedUnit="kcal" sourceName="8fit" sourceVersion="311" creationDate="2017-07-25 15:42:04 +0200" startDate="2017-07-25 12:21:41 +0200" endDate="2017-07-25 15:41:41 +0200">
+  <MetadataEntry key="type" value="sport"/>
+  <MetadataEntry key="name" value="rope jumping"/>
+  <MetadataEntry key="reportID" value="e32a3a82-ec78-47ca-8534-ab9be67cb4fa"/>
+ </Workout>
+ <Workout workoutActivityType="HKWorkoutActivityTypeDance" duration="12.75308465162913" durationUnit="min" totalDistance="0" totalDistanceUnit="km" totalEnergyBurned="80" totalEnergyBurnedUnit="kcal" sourceName="Runtastic" sourceVersion="7.3.3.50" creationDate="2017-07-25 15:53:45 +0200" startDate="2017-07-25 15:40:48 +0200" endDate="2017-07-25 15:53:34 +0200">
+  <MetadataEntry key="HKIndoorWorkout" value="0"/>
+  <WorkoutEvent type="HKWorkoutEventTypePause" date="2017-07-25 15:53:33 +0200"/>
+ </Workout>
+ <Workout workoutActivityType="HKWorkoutActivityTypeRunning" duration="60" durationUnit="min" totalDistance="8.04672000307346" totalDistanceUnit="km" totalEnergyBurned="555" totalEnergyBurnedUnit="kcal" sourceName="LFconnect" sourceVersion="2.13.0.341" creationDate="2017-07-25 17:10:53 +0200" startDate="2017-07-25 17:10:28 +0200" endDate="2017-07-25 17:10:28 +0200"/>
+ <Workout workoutActivityType="HKWorkoutActivityTypeRunning" duration="121" durationUnit="min" totalDistance="11.63" totalDistanceUnit="km" totalEnergyBurned="579.154434562122" totalEnergyBurnedUnit="kcal" sourceName="Nike+ Run Club" sourceVersion="1707060005" creationDate="2017-07-26 08:41:28 +0200" startDate="2017-07-26 06:40:00 +0200" endDate="2017-07-26 08:41:00 +0200">
+  <MetadataEntry key="HKIndoorWorkout" value="1"/>
+  <MetadataEntry key="HKWasUserEntered" value="1"/>
+  <MetadataEntry key="HKTimeZone" value="Asia/Jerusalem"/>
+ </Workout>
+ <Workout workoutActivityType="HKWorkoutActivityTypeFunctionalStrengthTraining" duration="12.41666666666667" durationUnit="min" totalDistance="0" totalDistanceUnit="km" totalEnergyBurned="52" totalEnergyBurnedUnit="kcal" sourceName="Nike Training" sourceVersion="1706220038" creationDate="2017-07-26 10:42:22 +0200" startDate="2017-07-26 10:29:47 +0200" endDate="2017-07-26 10:42:22 +0200"/>
+ <Workout workoutActivityType="HKWorkoutActivityTypeRunning" duration="115" durationUnit="min" totalDistance="4" totalDistanceUnit="km" totalEnergyBurned="916" totalEnergyBurnedUnit="kcal" sourceName="8fit" sourceVersion="321" creationDate="2017-09-24 14:02:03 +0200" startDate="2017-09-24 12:06:41 +0200" endDate="2017-09-24 14:01:41 +0200">
+  <MetadataEntry key="type" value="sport"/>
+  <MetadataEntry key="name" value="run"/>
+  <MetadataEntry key="reportID" value="864faaa3-64db-40a1-88ea-251b0f49725b"/>
+ </Workout>
+ <Workout workoutActivityType="HKWorkoutActivityTypeRunning" duration="30" durationUnit="min" totalDistance="4" totalDistanceUnit="km" totalEnergyBurned="239" totalEnergyBurnedUnit="kcal" sourceName="8fit" sourceVersion="330" creationDate="2017-10-01 12:51:33 +0200" startDate="2017-10-01 12:21:11 +0200" endDate="2017-10-01 12:51:11 +0200">
+  <MetadataEntry key="type" value="sport"/>
+  <MetadataEntry key="name" value="run"/>
+  <MetadataEntry key="reportID" value="a6eef03c-e2e4-48cf-8c64-1600b36e2783"/>
+ </Workout>
+ <Workout workoutActivityType="HKWorkoutActivityTypeRunning" duration="60" durationUnit="min" totalDistance="4" totalDistanceUnit="km" totalEnergyBurned="478" totalEnergyBurnedUnit="kcal" sourceName="8fit" sourceVersion="330" creationDate="2017-10-03 10:24:02 +0200" startDate="2017-10-03 09:23:43 +0200" endDate="2017-10-03 10:23:43 +0200">
+  <MetadataEntry key="type" value="sport"/>
+  <MetadataEntry key="name" value="run"/>
+  <MetadataEntry key="reportID" value="371340df-b5e7-4085-b881-5b9be9b6a791"/>
+ </Workout>
+ <Workout workoutActivityType="HKWorkoutActivityTypeRunning" duration="30" durationUnit="min" totalDistance="4" totalDistanceUnit="km" totalEnergyBurned="239" totalEnergyBurnedUnit="kcal" sourceName="8fit" sourceVersion="330" creationDate="2017-10-03 10:24:44 +0200" startDate="2017-10-03 09:54:37 +0200" endDate="2017-10-03 10:24:37 +0200">
+  <MetadataEntry key="type" value="sport"/>
+  <MetadataEntry key="name" value="run"/>
+  <MetadataEntry key="reportID" value="7569cbec-6af9-43c3-997d-469ed0347895"/>
+ </Workout>
+ <Workout workoutActivityType="HKWorkoutActivityTypeRunning" duration="30" durationUnit="min" totalDistance="4" totalDistanceUnit="km" totalEnergyBurned="239" totalEnergyBurnedUnit="kcal" sourceName="8fit" sourceVersion="330" creationDate="2017-10-03 10:51:09 +0200" startDate="2017-10-03 10:21:03 +0200" endDate="2017-10-03 10:51:03 +0200">
+  <MetadataEntry key="type" value="sport"/>
+  <MetadataEntry key="name" value="run"/>
+  <MetadataEntry key="reportID" value="032f65be-b35a-4e91-83f5-799ce0d0171d"/>
+ </Workout>
+ <Workout workoutActivityType="HKWorkoutActivityTypeMixedMetabolicCardioTraining" duration="30" durationUnit="min" totalDistance="4" totalDistanceUnit="km" totalEnergyBurned="168" totalEnergyBurnedUnit="kcal" sourceName="8fit" sourceVersion="330" creationDate="2017-10-03 10:52:24 +0200" startDate="2017-10-03 10:22:18 +0200" endDate="2017-10-03 10:52:18 +0200">
+  <MetadataEntry key="type" value="sport"/>
+  <MetadataEntry key="name" value="pole dance"/>
+  <MetadataEntry key="reportID" value="84a363fc-13c4-44ec-8437-2dced5cf6463"/>
+ </Workout>
+ <Workout workoutActivityType="HKWorkoutActivityTypeMixedMetabolicCardioTraining" duration="30" durationUnit="min" totalDistance="4" totalDistanceUnit="km" totalEnergyBurned="188" totalEnergyBurnedUnit="kcal" sourceName="8fit" sourceVersion="330" creationDate="2017-10-03 10:52:51 +0200" startDate="2017-10-03 10:22:45 +0200" endDate="2017-10-03 10:52:45 +0200">
+  <MetadataEntry key="type" value="sport"/>
+  <MetadataEntry key="name" value="aerobics"/>
+  <MetadataEntry key="reportID" value="1e7d64af-6864-40a5-aefd-3e472872d4cf"/>
+ </Workout>
+ <Workout workoutActivityType="HKWorkoutActivityTypeRunning" duration="22.09970092773438" durationUnit="min" totalDistance="3.197469970703125" totalDistanceUnit="km" totalEnergyBurned="151" totalEnergyBurnedUnit="kcal" sourceName="Connect" sourceVersion="33" creationDate="2017-10-31 10:19:46 +0200" startDate="2017-10-23 06:30:46 +0200" endDate="2017-10-23 06:52:51 +0200"/>
+ <Workout workoutActivityType="HKWorkoutActivityTypeRunning" duration="30.37941691080729" durationUnit="min" totalDistance="4.3847998046875" totalDistanceUnit="km" totalEnergyBurned="244" totalEnergyBurnedUnit="kcal" sourceName="Connect" sourceVersion="33" creationDate="2017-10-31 10:19:46 +0200" startDate="2017-10-25 06:38:34 +0200" endDate="2017-10-25 07:08:56 +0200"/>
+ <Workout workoutActivityType="HKWorkoutActivityTypeRunning" duration="91.31264648437499" durationUnit="min" totalDistance="9.740429687500001" totalDistanceUnit="km" totalEnergyBurned="443" totalEnergyBurnedUnit="kcal" sourceName="Connect" sourceVersion="33" creationDate="2017-10-31 10:19:46 +0200" startDate="2017-10-27 16:03:21 +0200" endDate="2017-10-27 17:34:39 +0200"/>
+ <Workout workoutActivityType="HKWorkoutActivityTypeRunning" duration="48.48955078125" durationUnit="min" totalDistance="7.36652978515625" totalDistanceUnit="km" totalEnergyBurned="404" totalEnergyBurnedUnit="kcal" sourceName="Connect" sourceVersion="33" creationDate="2017-10-31 10:19:46 +0200" startDate="2017-10-30 09:06:01 +0200" endDate="2017-10-30 09:54:30 +0200"/>
+ <Workout workoutActivityType="HKWorkoutActivityTypeRunning" duration="46" durationUnit="min" totalDistance="10" totalDistanceUnit="km" totalEnergyBurned="666" totalEnergyBurnedUnit="kcal" sourceName="Health" sourceVersion="10.3.1" creationDate="2017-10-30 16:49:36 +0200" startDate="2017-10-30 13:49:00 +0200" endDate="2017-10-30 14:35:00 +0200">
+  <MetadataEntry key="HKWasUserEntered" value="1"/>
+ </Workout>
+ <Workout workoutActivityType="HKWorkoutActivityTypeTraditionalStrengthTraining" duration="65" durationUnit="min" totalDistance="0" totalDistanceUnit="km" totalEnergyBurned="0" totalEnergyBurnedUnit="kcal" sourceName="lark" sourceVersion="436" creationDate="2017-10-31 09:52:29 +0200" startDate="2017-10-31 06:45:00 +0200" endDate="2017-10-31 07:50:00 +0200">
+  <MetadataEntry key="Created at" value="2017-10-31 07:52:29 +0000"/>
+  <MetadataEntry key="lark_uuid" value="2B65F26A-1045-436F-9F5E-2488F0F9792A"/>
+  <MetadataEntry key="Creation type" value="manual"/>
+ </Workout>
+ <Workout workoutActivityType="HKWorkoutActivityTypeWalking" duration="65" durationUnit="min" totalDistance="0" totalDistanceUnit="km" totalEnergyBurned="0" totalEnergyBurnedUnit="kcal" sourceName="lark" sourceVersion="436" creationDate="2017-10-31 09:53:00 +0200" startDate="2017-10-31 07:50:00 +0200" endDate="2017-10-31 08:55:00 +0200">
+  <MetadataEntry key="Created at" value="2017-10-31 07:53:00 +0000"/>
+  <MetadataEntry key="lark_uuid" value="CF686125-1340-421D-BB17-7E16ABD40BEE"/>
+  <MetadataEntry key="Creation type" value="manual"/>
+ </Workout>
+ <Workout workoutActivityType="HKWorkoutActivityTypeRunning" duration="60" durationUnit="min" totalDistance="0" totalDistanceUnit="km" totalEnergyBurned="69" totalEnergyBurnedUnit="kcal" sourceName="Nutrino" sourceVersion="2.15.0.6" creationDate="2017-10-31 17:08:29 +0200" startDate="2017-10-31 17:08:08 +0200" endDate="2017-10-31 18:08:08 +0200">
+  <MetadataEntry key="HKExternalUUID" value="acu0jkcg#AV9y-gUb8akmkjRi0AQw"/>
+ </Workout>
+</HealthData>
