@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4C7D60331FC178FC00BD7FC1 /* export.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C7D60321FC178FC00BD7FC1 /* export.xml */; };
 		4C8B9FD31FB1D757007C2D4F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8B9FD21FB1D757007C2D4F /* AppDelegate.swift */; };
 		4C8B9FD51FB1D757007C2D4F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8B9FD41FB1D757007C2D4F /* ViewController.swift */; };
 		4C8B9FD81FB1D757007C2D4F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C8B9FD61FB1D757007C2D4F /* Main.storyboard */; };
@@ -17,7 +18,6 @@
 		4C8B9FF61FB1D757007C2D4F /* HealthKitImporterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8B9FF51FB1D757007C2D4F /* HealthKitImporterUITests.swift */; };
 		4C8BA0041FB1D921007C2D4F /* HKimporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8BA0031FB1D921007C2D4F /* HKimporter.swift */; };
 		4C8BA00A1FB1EA45007C2D4F /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C8BA0091FB1EA45007C2D4F /* HealthKit.framework */; };
-		4CC6659F1FB1FA24004FD1A3 /* export.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C8BA00B1FB1F867007C2D4F /* export.xml */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4C7D60321FC178FC00BD7FC1 /* export.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = export.xml; sourceTree = "<group>"; };
 		4C8B9FCF1FB1D757007C2D4F /* HealthKitImporter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HealthKitImporter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C8B9FD21FB1D757007C2D4F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4C8B9FD41FB1D757007C2D4F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -55,7 +56,6 @@
 		4C8BA0031FB1D921007C2D4F /* HKimporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HKimporter.swift; sourceTree = "<group>"; };
 		4C8BA0071FB1EA45007C2D4F /* HealthKitImporter.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HealthKitImporter.entitlements; sourceTree = "<group>"; };
 		4C8BA0091FB1EA45007C2D4F /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
-		4C8BA00B1FB1F867007C2D4F /* export.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = export.xml; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,7 +87,7 @@
 		4C8B9FC61FB1D757007C2D4F = {
 			isa = PBXGroup;
 			children = (
-				4C8BA00B1FB1F867007C2D4F /* export.xml */,
+				4C7D60321FC178FC00BD7FC1 /* export.xml */,
 				4C8B9FD11FB1D757007C2D4F /* HealthKitImporter */,
 				4C8B9FE91FB1D757007C2D4F /* HealthKitImporterTests */,
 				4C8B9FF41FB1D757007C2D4F /* HealthKitImporterUITests */,
@@ -261,9 +261,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				4C8B9FE01FB1D757007C2D4F /* LaunchScreen.storyboard in Resources */,
-				4CC6659F1FB1FA24004FD1A3 /* export.xml in Resources */,
 				4C8B9FDD1FB1D757007C2D4F /* Assets.xcassets in Resources */,
 				4C8B9FD81FB1D757007C2D4F /* Main.storyboard in Resources */,
+				4C7D60331FC178FC00BD7FC1 /* export.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

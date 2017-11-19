@@ -113,12 +113,18 @@ class HKimporter : NSObject, XMLParserDelegate {
             HKWorkoutType.workoutType(),
             // Category
             HKQuantityType.categoryType(forIdentifier: HKCategoryTypeIdentifier.sleepAnalysis)!,
-        
+            
+            //Heart rate
+            HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.heartRate)!,
+            HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.heartRateVariabilitySDNN)!,
+            HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.restingHeartRate)!,
+
             // Measurements
             HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.bodyFatPercentage)!,
             HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.height)!,
             HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.bodyMass)!,
             HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.leanBodyMass)!,
+            HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.bodyMassIndex)!,
             // Nutrients
             HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.dietaryFatTotal)!,
             HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.dietaryFatPolyunsaturated)!,
