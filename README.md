@@ -1,6 +1,6 @@
-# HealthKitImporter
+# HealthKit Importer
 
-With this project you can import HK data from a device to your simulator/another device
+With this Swift 4 project you can import HK data from a device to your simulator/another device
 To get HK data you can use the default data file in the project or just get one from your device:
 
 HealthKit App -> User icon -> Export health data -> 
