@@ -47,32 +47,6 @@ class HKRecord: CustomStringConvertible {
     var metadata: [String:String]?
 }
 
-//class HKWorkoutRecord: HKRecord {
-//    var type: String = String()
-//    var value: Double = 0
-//    var unit: String?
-//    var sourceName: String = String()
-//    var startDate: Date = Date()
-//    var endDate: Date = Date()
-//    var creationDate: Date = Date()
-//
-//    var metadata: [String:String]?
-//
-//    workoutActivityType="HKWorkoutActivityTypeTraditionalStrengthTraining"
-//    duration="65"
-//    durationUnit="min"
-//    totalDistance="0"
-//    totalDistanceUnit="km"
-//    totalEnergyBurned="0"
-//    totalEnergyBurnedUnit="kcal"
-//    sourceName="lark"
-//    sourceVersion="436"
-//    creationDate="2017-10-31 09:52:29 +0200"
-//    startDate="2017-10-31 06:45:00 +0200"
-//    endDate="2017-10-31 07:50:00 +0200">
-//}
-
-
 class HKimporter : NSObject, XMLParserDelegate {
 
     var healthStore:HKHealthStore?
@@ -317,16 +291,7 @@ class HKimporter : NSObject, XMLParserDelegate {
             successBlock()
         })
     }
-    
-    func iterateEnum<T: Hashable>(_: T.Type) -> AnyIterator<T> {
-        var i = 0
-        return AnyIterator {
-            let next = withUnsafeBytes(of: &i) { $0.load(as: T.self) }
-            if next.hashValue != i { return nil }
-            i += 1
-            return next
-        }
-    }
+
     func activityByName(activityName: String) -> HKWorkoutActivityType {
         var res = HKWorkoutActivityType(rawValue: 0)
         switch activityName {
