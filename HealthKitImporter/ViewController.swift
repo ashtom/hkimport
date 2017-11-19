@@ -10,6 +10,7 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    @IBOutlet weak var startButton: UIButton!
     @IBOutlet weak var readCounter: UILabel!
     @IBOutlet weak var writeCounter: UILabel!
     
@@ -18,6 +19,9 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+    }
+    
+    @IBAction func start(_ sender: Any) {
         dataImporter = HKimporter {
             if let path = Bundle.main.url(forResource: "export", withExtension: "xml") {
                 if let parser = XMLParser(contentsOf: path) {

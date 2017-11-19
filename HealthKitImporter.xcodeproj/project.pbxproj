@@ -16,7 +16,6 @@
 		4C8B9FEB1FB1D757007C2D4F /* HealthKitImporterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8B9FEA1FB1D757007C2D4F /* HealthKitImporterTests.swift */; };
 		4C8B9FF61FB1D757007C2D4F /* HealthKitImporterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8B9FF51FB1D757007C2D4F /* HealthKitImporterUITests.swift */; };
 		4C8BA0041FB1D921007C2D4F /* HKimporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8BA0031FB1D921007C2D4F /* HKimporter.swift */; };
-		4C8BA0061FB1DF8D007C2D4F /* exportSmall.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C8BA0051FB1D9EA007C2D4F /* exportSmall.xml */; };
 		4C8BA00A1FB1EA45007C2D4F /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C8BA0091FB1EA45007C2D4F /* HealthKit.framework */; };
 		4CC6659F1FB1FA24004FD1A3 /* export.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C8BA00B1FB1F867007C2D4F /* export.xml */; };
 /* End PBXBuildFile section */
@@ -54,7 +53,6 @@
 		4C8B9FF51FB1D757007C2D4F /* HealthKitImporterUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitImporterUITests.swift; sourceTree = "<group>"; };
 		4C8B9FF71FB1D757007C2D4F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4C8BA0031FB1D921007C2D4F /* HKimporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HKimporter.swift; sourceTree = "<group>"; };
-		4C8BA0051FB1D9EA007C2D4F /* exportSmall.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = exportSmall.xml; sourceTree = "<group>"; };
 		4C8BA0071FB1EA45007C2D4F /* HealthKitImporter.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HealthKitImporter.entitlements; sourceTree = "<group>"; };
 		4C8BA0091FB1EA45007C2D4F /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		4C8BA00B1FB1F867007C2D4F /* export.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = export.xml; sourceTree = "<group>"; };
@@ -90,7 +88,6 @@
 			isa = PBXGroup;
 			children = (
 				4C8BA00B1FB1F867007C2D4F /* export.xml */,
-				4C8BA0051FB1D9EA007C2D4F /* exportSmall.xml */,
 				4C8B9FD11FB1D757007C2D4F /* HealthKitImporter */,
 				4C8B9FE91FB1D757007C2D4F /* HealthKitImporterTests */,
 				4C8B9FF41FB1D757007C2D4F /* HealthKitImporterUITests */,
@@ -267,7 +264,6 @@
 				4CC6659F1FB1FA24004FD1A3 /* export.xml in Resources */,
 				4C8B9FDD1FB1D757007C2D4F /* Assets.xcassets in Resources */,
 				4C8B9FD81FB1D757007C2D4F /* Main.storyboard in Resources */,
-				4C8BA0061FB1DF8D007C2D4F /* exportSmall.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
