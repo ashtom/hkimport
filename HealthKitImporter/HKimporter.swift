@@ -295,6 +295,8 @@ class HKimporter : NSObject, XMLParserDelegate {
     func activityByName(activityName: String) -> HKWorkoutActivityType {
         var res = HKWorkoutActivityType(rawValue: 0)
         switch activityName {
+        case "HKWorkoutActivityTypeSwimming":
+            res = HKWorkoutActivityType.swimming
         case "HKWorkoutActivityTypeWalking":
             res = HKWorkoutActivityType.walking
         case "HKWorkoutActivityTypeRunning":
