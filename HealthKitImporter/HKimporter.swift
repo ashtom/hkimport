@@ -259,7 +259,7 @@ class HKimporter : NSObject, XMLParserDelegate {
         } else if let type = HKCategoryType.categoryType(forIdentifier: HKCategoryTypeIdentifier(rawValue: item.type)) {
             hkSample = HKCategorySample.init(type: type, value: Int(item.value), start: item.startDate, end: item.endDate, metadata: item.metadata)
         } else if item.type == HKObjectType.workoutType().identifier {
-            hkSample = HKWorkout.init(activityType: HKWorkoutActivityType(rawValue: 0)!, start: item.startDate, end: item.endDate, duration: item.value, totalEnergyBurned: HKQuantity(unit: HKUnit.init(from: item.totalEnergyBurnedUnit), doubleValue: item.totalEnergyBurned), totalDistance: HKQuantity(unit: HKUnit.init(from: item.totalDistanceUnit), doubleValue: item.totalDistance), device: nil, metadata: item.metadata)
+            hkSample = HKWorkout.init(activityType: item.activityType ?? HKWorkoutActivityType(rawValue: 0)!, start: item.startDate, end: item.endDate, duration: item.value, totalEnergyBurned: HKQuantity(unit: HKUnit.init(from: item.totalEnergyBurnedUnit), doubleValue: item.totalEnergyBurned), totalDistance: HKQuantity(unit: HKUnit.init(from: item.totalDistanceUnit), doubleValue: item.totalDistance), device: nil, metadata: item.metadata)
         } else {
             print("didnt catch this item - \(item)")
         }
@@ -295,6 +295,8 @@ class HKimporter : NSObject, XMLParserDelegate {
     func activityByName(activityName: String) -> HKWorkoutActivityType {
         var res = HKWorkoutActivityType(rawValue: 0)
         switch activityName {
+        case "HKWorkoutActivityTypeSwimming":
+            res = HKWorkoutActivityType.swimming
         case "HKWorkoutActivityTypeWalking":
             res = HKWorkoutActivityType.walking
         case "HKWorkoutActivityTypeRunning":
