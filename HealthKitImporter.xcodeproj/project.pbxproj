@@ -14,28 +14,9 @@
 		4C8B9FDB1FB1D757007C2D4F /* HealthKitImporter.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4C8B9FD91FB1D757007C2D4F /* HealthKitImporter.xcdatamodeld */; };
 		4C8B9FDD1FB1D757007C2D4F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C8B9FDC1FB1D757007C2D4F /* Assets.xcassets */; };
 		4C8B9FE01FB1D757007C2D4F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C8B9FDE1FB1D757007C2D4F /* LaunchScreen.storyboard */; };
-		4C8B9FEB1FB1D757007C2D4F /* HealthKitImporterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8B9FEA1FB1D757007C2D4F /* HealthKitImporterTests.swift */; };
-		4C8B9FF61FB1D757007C2D4F /* HealthKitImporterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8B9FF51FB1D757007C2D4F /* HealthKitImporterUITests.swift */; };
 		4C8BA0041FB1D921007C2D4F /* HKimporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8BA0031FB1D921007C2D4F /* HKimporter.swift */; };
 		4C8BA00A1FB1EA45007C2D4F /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C8BA0091FB1EA45007C2D4F /* HealthKit.framework */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		4C8B9FE71FB1D757007C2D4F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4C8B9FC71FB1D757007C2D4F /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 4C8B9FCE1FB1D757007C2D4F;
-			remoteInfo = HealthKitImporter;
-		};
-		4C8B9FF21FB1D757007C2D4F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4C8B9FC71FB1D757007C2D4F /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 4C8B9FCE1FB1D757007C2D4F;
-			remoteInfo = HealthKitImporter;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		4C7D60321FC178FC00BD7FC1 /* export.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = export.xml; sourceTree = "<group>"; };
@@ -47,12 +28,6 @@
 		4C8B9FDC1FB1D757007C2D4F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4C8B9FDF1FB1D757007C2D4F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4C8B9FE11FB1D757007C2D4F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4C8B9FE61FB1D757007C2D4F /* HealthKitImporterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HealthKitImporterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		4C8B9FEA1FB1D757007C2D4F /* HealthKitImporterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitImporterTests.swift; sourceTree = "<group>"; };
-		4C8B9FEC1FB1D757007C2D4F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4C8B9FF11FB1D757007C2D4F /* HealthKitImporterUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HealthKitImporterUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		4C8B9FF51FB1D757007C2D4F /* HealthKitImporterUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitImporterUITests.swift; sourceTree = "<group>"; };
-		4C8B9FF71FB1D757007C2D4F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4C8BA0031FB1D921007C2D4F /* HKimporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HKimporter.swift; sourceTree = "<group>"; };
 		4C8BA0071FB1EA45007C2D4F /* HealthKitImporter.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HealthKitImporter.entitlements; sourceTree = "<group>"; };
 		4C8BA0091FB1EA45007C2D4F /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
@@ -67,30 +42,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		4C8B9FE31FB1D757007C2D4F /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		4C8B9FEE1FB1D757007C2D4F /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		4C8B9FC61FB1D757007C2D4F = {
 			isa = PBXGroup;
 			children = (
-				4C7D60321FC178FC00BD7FC1 /* export.xml */,
 				4C8B9FD11FB1D757007C2D4F /* HealthKitImporter */,
-				4C8B9FE91FB1D757007C2D4F /* HealthKitImporterTests */,
-				4C8B9FF41FB1D757007C2D4F /* HealthKitImporterUITests */,
+				4D280C17247AF11400D9162E /* Data */,
 				4C8B9FD01FB1D757007C2D4F /* Products */,
 				4C8BA0081FB1EA45007C2D4F /* Frameworks */,
 			);
@@ -100,8 +59,6 @@
 			isa = PBXGroup;
 			children = (
 				4C8B9FCF1FB1D757007C2D4F /* HealthKitImporter.app */,
-				4C8B9FE61FB1D757007C2D4F /* HealthKitImporterTests.xctest */,
-				4C8B9FF11FB1D757007C2D4F /* HealthKitImporterUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -109,35 +66,17 @@
 		4C8B9FD11FB1D757007C2D4F /* HealthKitImporter */ = {
 			isa = PBXGroup;
 			children = (
-				4C8BA0071FB1EA45007C2D4F /* HealthKitImporter.entitlements */,
 				4C8B9FD21FB1D757007C2D4F /* AppDelegate.swift */,
-				4C8B9FD41FB1D757007C2D4F /* ViewController.swift */,
-				4C8BA0031FB1D921007C2D4F /* HKimporter.swift */,
-				4C8B9FD61FB1D757007C2D4F /* Main.storyboard */,
 				4C8B9FDC1FB1D757007C2D4F /* Assets.xcassets */,
-				4C8B9FDE1FB1D757007C2D4F /* LaunchScreen.storyboard */,
-				4C8B9FE11FB1D757007C2D4F /* Info.plist */,
+				4C8BA0071FB1EA45007C2D4F /* HealthKitImporter.entitlements */,
 				4C8B9FD91FB1D757007C2D4F /* HealthKitImporter.xcdatamodeld */,
+				4C8BA0031FB1D921007C2D4F /* HKimporter.swift */,
+				4C8B9FE11FB1D757007C2D4F /* Info.plist */,
+				4C8B9FDE1FB1D757007C2D4F /* LaunchScreen.storyboard */,
+				4C8B9FD61FB1D757007C2D4F /* Main.storyboard */,
+				4C8B9FD41FB1D757007C2D4F /* ViewController.swift */,
 			);
 			path = HealthKitImporter;
-			sourceTree = "<group>";
-		};
-		4C8B9FE91FB1D757007C2D4F /* HealthKitImporterTests */ = {
-			isa = PBXGroup;
-			children = (
-				4C8B9FEA1FB1D757007C2D4F /* HealthKitImporterTests.swift */,
-				4C8B9FEC1FB1D757007C2D4F /* Info.plist */,
-			);
-			path = HealthKitImporterTests;
-			sourceTree = "<group>";
-		};
-		4C8B9FF41FB1D757007C2D4F /* HealthKitImporterUITests */ = {
-			isa = PBXGroup;
-			children = (
-				4C8B9FF51FB1D757007C2D4F /* HealthKitImporterUITests.swift */,
-				4C8B9FF71FB1D757007C2D4F /* Info.plist */,
-			);
-			path = HealthKitImporterUITests;
 			sourceTree = "<group>";
 		};
 		4C8BA0081FB1EA45007C2D4F /* Frameworks */ = {
@@ -146,6 +85,14 @@
 				4C8BA0091FB1EA45007C2D4F /* HealthKit.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4D280C17247AF11400D9162E /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				4C7D60321FC178FC00BD7FC1 /* export.xml */,
+			);
+			name = Data;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -168,42 +115,6 @@
 			productReference = 4C8B9FCF1FB1D757007C2D4F /* HealthKitImporter.app */;
 			productType = "com.apple.product-type.application";
 		};
-		4C8B9FE51FB1D757007C2D4F /* HealthKitImporterTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 4C8B9FFD1FB1D757007C2D4F /* Build configuration list for PBXNativeTarget "HealthKitImporterTests" */;
-			buildPhases = (
-				4C8B9FE21FB1D757007C2D4F /* Sources */,
-				4C8B9FE31FB1D757007C2D4F /* Frameworks */,
-				4C8B9FE41FB1D757007C2D4F /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				4C8B9FE81FB1D757007C2D4F /* PBXTargetDependency */,
-			);
-			name = HealthKitImporterTests;
-			productName = HealthKitImporterTests;
-			productReference = 4C8B9FE61FB1D757007C2D4F /* HealthKitImporterTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		4C8B9FF01FB1D757007C2D4F /* HealthKitImporterUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 4C8BA0001FB1D757007C2D4F /* Build configuration list for PBXNativeTarget "HealthKitImporterUITests" */;
-			buildPhases = (
-				4C8B9FED1FB1D757007C2D4F /* Sources */,
-				4C8B9FEE1FB1D757007C2D4F /* Frameworks */,
-				4C8B9FEF1FB1D757007C2D4F /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				4C8B9FF31FB1D757007C2D4F /* PBXTargetDependency */,
-			);
-			name = HealthKitImporterUITests;
-			productName = HealthKitImporterUITests;
-			productReference = 4C8B9FF11FB1D757007C2D4F /* HealthKitImporterUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -224,18 +135,6 @@
 							};
 						};
 					};
-					4C8B9FE51FB1D757007C2D4F = {
-						CreatedOnToolsVersion = 9.0;
-						LastSwiftMigration = 1150;
-						ProvisioningStyle = Automatic;
-						TestTargetID = 4C8B9FCE1FB1D757007C2D4F;
-					};
-					4C8B9FF01FB1D757007C2D4F = {
-						CreatedOnToolsVersion = 9.0;
-						LastSwiftMigration = 1150;
-						ProvisioningStyle = Automatic;
-						TestTargetID = 4C8B9FCE1FB1D757007C2D4F;
-					};
 				};
 			};
 			buildConfigurationList = 4C8B9FCA1FB1D757007C2D4F /* Build configuration list for PBXProject "HealthKitImporter" */;
@@ -252,8 +151,6 @@
 			projectRoot = "";
 			targets = (
 				4C8B9FCE1FB1D757007C2D4F /* HealthKitImporter */,
-				4C8B9FE51FB1D757007C2D4F /* HealthKitImporterTests */,
-				4C8B9FF01FB1D757007C2D4F /* HealthKitImporterUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -267,20 +164,6 @@
 				4C8B9FDD1FB1D757007C2D4F /* Assets.xcassets in Resources */,
 				4C8B9FD81FB1D757007C2D4F /* Main.storyboard in Resources */,
 				4C7D60331FC178FC00BD7FC1 /* export.xml in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		4C8B9FE41FB1D757007C2D4F /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		4C8B9FEF1FB1D757007C2D4F /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -298,36 +181,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		4C8B9FE21FB1D757007C2D4F /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				4C8B9FEB1FB1D757007C2D4F /* HealthKitImporterTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		4C8B9FED1FB1D757007C2D4F /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				4C8B9FF61FB1D757007C2D4F /* HealthKitImporterUITests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		4C8B9FE81FB1D757007C2D4F /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 4C8B9FCE1FB1D757007C2D4F /* HealthKitImporter */;
-			targetProxy = 4C8B9FE71FB1D757007C2D4F /* PBXContainerItemProxy */;
-		};
-		4C8B9FF31FB1D757007C2D4F /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 4C8B9FCE1FB1D757007C2D4F /* HealthKitImporter */;
-			targetProxy = 4C8B9FF21FB1D757007C2D4F /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		4C8B9FD61FB1D757007C2D4F /* Main.storyboard */ = {
@@ -472,7 +326,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = test.boaz.HealthKitImporter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -488,73 +342,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = test.boaz.HealthKitImporter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
-		4C8B9FFE1FB1D757007C2D4F /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = TL53NN6RVX;
-				INFOPLIST_FILE = HealthKitImporterTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = test.boaz.HealthKitImporterTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HealthKitImporter.app/HealthKitImporter";
-			};
-			name = Debug;
-		};
-		4C8B9FFF1FB1D757007C2D4F /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = TL53NN6RVX;
-				INFOPLIST_FILE = HealthKitImporterTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = test.boaz.HealthKitImporterTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HealthKitImporter.app/HealthKitImporter";
-			};
-			name = Release;
-		};
-		4C8BA0011FB1D757007C2D4F /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = TL53NN6RVX;
-				INFOPLIST_FILE = HealthKitImporterUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = test.boaz.HealthKitImporterUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = HealthKitImporter;
-			};
-			name = Debug;
-		};
-		4C8BA0021FB1D757007C2D4F /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = TL53NN6RVX;
-				INFOPLIST_FILE = HealthKitImporterUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = test.boaz.HealthKitImporterUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = HealthKitImporter;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -575,24 +363,6 @@
 			buildConfigurations = (
 				4C8B9FFB1FB1D757007C2D4F /* Debug */,
 				4C8B9FFC1FB1D757007C2D4F /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		4C8B9FFD1FB1D757007C2D4F /* Build configuration list for PBXNativeTarget "HealthKitImporterTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				4C8B9FFE1FB1D757007C2D4F /* Debug */,
-				4C8B9FFF1FB1D757007C2D4F /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		4C8BA0001FB1D757007C2D4F /* Build configuration list for PBXNativeTarget "HealthKitImporterUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				4C8BA0011FB1D757007C2D4F /* Debug */,
-				4C8BA0021FB1D757007C2D4F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
