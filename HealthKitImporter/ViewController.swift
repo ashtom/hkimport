@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import os.log
 
 class ViewController: UIViewController {
     
@@ -32,7 +33,7 @@ class ViewController: UIViewController {
                     self.dataImporter.saveAllSamples()
                 }
             } else {
-                print ("file not found")
+                os_log("File not found")
             }
         }
     }

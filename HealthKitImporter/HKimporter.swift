@@ -8,15 +8,11 @@
 
 import UIKit
 import HealthKit
+import os.log
 
 extension CustomStringConvertible {
     var description : String {
-        var description: String = ""
-        //if self is AnyObject {
-        //    description = "***** \(type(of: self)) - <\(unsafeAddressOf((self as AnyObject)))>***** \n"
-        //} else {
-        description = "***** \(type(of: self)) *****\n"
-        //}
+        var description: String = "\(type(of: self))\n"
         let selfMirror = Mirror(reflecting: self)
         for child in selfMirror.children {
             if let propertyName = child.label {
@@ -160,7 +156,7 @@ class HKimporter : NSObject, XMLParserDelegate {
 
         self.healthStore?.requestAuthorization(toShare: shareReadObjectTypes, read: shareReadObjectTypes, completion: { (res, error) in
             if let error = error {
-                print(error)
+                os_log("Error: %@", error.localizedDescription)
             } else {
                 completion()
             }
@@ -195,7 +191,6 @@ class HKimporter : NSObject, XMLParserDelegate {
         } else if elementName == "MetadataEntry" {
             currRecord.metadata = attributeDict
         } else if elementName == "Workout" {
-            print(attributeDict)
             currRecord.type = HKObjectType.workoutType().identifier
             currRecord.activityType = activityByName(activityName: attributeDict["workoutActivityType"] ?? "")
             currRecord.sourceName = attributeDict["sourceName"] ??  ""
@@ -234,16 +229,13 @@ class HKimporter : NSObject, XMLParserDelegate {
         if elementName == "Record" || elementName == "Workout" {
 
             allHKRecords.append(currRecord)
-            print(currRecord.description)
+            os_log("Record: %@", currRecord.description)
             DispatchQueue.main.async {
                 self.readCounterLabel?.text = "\(self.allHKRecords.count)"
             }
             saveHKRecord(item: currRecord, withSuccess: {
-                // success
-                //print("record added to array")
             }, failure: {
-                // fail
-                print("fail to process record")
+                os_log("fail to process record")
             })
         }
     }
@@ -282,7 +274,7 @@ class HKimporter : NSObject, XMLParserDelegate {
                 metadata: item.metadata
             )
         } else {
-            print("didnt catch this item - \(item)")
+            os_log("Didn't catch this item: %@", item.description)
         }
         
         if let hkSample = hkSample, (self.healthStore?.authorizationStatus(for: hkSample.sampleType) == HKAuthorizationStatus.sharingAuthorized) {
@@ -303,7 +295,7 @@ class HKimporter : NSObject, XMLParserDelegate {
     func saveSamplesToHK (samples:[HKSample], withSuccess successBlock: @escaping () -> Void, failure failiureBlock: @escaping () -> Void) {
         self.healthStore?.save(samples, withCompletion: { (success, error) in
             if (!success) {
-                print(String(format: "An error occured saving the sample. The error was: %@.", error.debugDescription))
+                os_log("An error occured saving the sample. The error was: %@.", error.debugDescription)
                 failiureBlock()
             }
             DispatchQueue.main.async {
@@ -333,8 +325,7 @@ class HKimporter : NSObject, XMLParserDelegate {
         case "HKWorkoutActivityTypeDance":
             res = HKWorkoutActivityType.dance
         default:
-            print ("???????")
-            print ("Add support for activity - \(activityName)")
+            os_log("No support for activity: %@", activityName)
             break;
         }
         return res!
