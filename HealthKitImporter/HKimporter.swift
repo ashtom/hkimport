@@ -303,8 +303,6 @@ class HKimporter : NSObject, XMLParserDelegate {
             res = HKWorkoutActivityType.running
         case "HKWorkoutActivityTypeCycling":
             res = HKWorkoutActivityType.cycling
-        case "HKWorkoutActivityTypeMixedMetabolicCardioTraining":
-            res = HKWorkoutActivityType.mixedMetabolicCardioTraining
         case "HKWorkoutActivityTypeYoga":
             res = HKWorkoutActivityType.yoga
         case "HKWorkoutActivityTypeFunctionalStrengthTraining":
