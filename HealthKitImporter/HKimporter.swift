@@ -255,11 +255,32 @@ class HKimporter : NSObject, XMLParserDelegate {
         
         var hkSample: HKSample? = nil
         if let type = HKQuantityType.quantityType(forIdentifier:  HKQuantityTypeIdentifier(rawValue: item.type)) {
-            hkSample = HKQuantitySample.init(type: type, quantity: quantity, start: item.startDate, end: item.endDate, metadata: item.metadata)
+            hkSample = HKQuantitySample.init(
+                type: type,
+                quantity: quantity,
+                start: item.startDate,
+                end: item.endDate,
+                metadata: item.metadata
+            )
         } else if let type = HKCategoryType.categoryType(forIdentifier: HKCategoryTypeIdentifier(rawValue: item.type)) {
-            hkSample = HKCategorySample.init(type: type, value: Int(item.value), start: item.startDate, end: item.endDate, metadata: item.metadata)
+            hkSample = HKCategorySample.init(
+                type: type,
+                value: Int(item.value),
+                start: item.startDate,
+                end: item.endDate,
+                metadata: item.metadata
+            )
         } else if item.type == HKObjectType.workoutType().identifier {
-            hkSample = HKWorkout.init(activityType: item.activityType ?? HKWorkoutActivityType(rawValue: 0)!, start: item.startDate, end: item.endDate, duration: item.value, totalEnergyBurned: HKQuantity(unit: HKUnit.init(from: item.totalEnergyBurnedUnit), doubleValue: item.totalEnergyBurned), totalDistance: HKQuantity(unit: HKUnit.init(from: item.totalDistanceUnit), doubleValue: item.totalDistance), device: nil, metadata: item.metadata)
+            hkSample = HKWorkout.init(
+                activityType: item.activityType ?? HKWorkoutActivityType(rawValue: 0)!,
+                start: item.startDate,
+                end: item.endDate,
+                duration: HKQuantity(unit: HKUnit.init(from: item.unit!), doubleValue: item.value).doubleValue(for: HKUnit.second()),
+                totalEnergyBurned: HKQuantity(unit: HKUnit.init(from: item.totalEnergyBurnedUnit), doubleValue: item.totalEnergyBurned),
+                totalDistance: HKQuantity(unit: HKUnit.init(from: item.totalDistanceUnit), doubleValue: item.totalDistance),
+                device: nil,
+                metadata: item.metadata
+            )
         } else {
             print("didnt catch this item - \(item)")
         }
