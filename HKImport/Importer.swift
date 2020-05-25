@@ -48,9 +48,8 @@ class Importer: NSObject, XMLParserDelegate {
 
     var healthStore: HKHealthStore?
 
-    var allRecords: [HealthRecord] = []
     var allSamples: [HKSample] = []
-    var eName: String = String()
+    var readCount = 0
     var currentRecord: HealthRecord = HealthRecord.init()
     var readCounterLabel: UILabel?
     var writeCounterLabel: UILabel?
@@ -162,7 +161,6 @@ class Importer: NSObject, XMLParserDelegate {
     }
 
     func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String: String]) {
-        eName = elementName
         if elementName == "Record" {
             parseRecordFromAttributes(attributeDict)
         } else if elementName == "MetadataEntry" {
@@ -241,7 +239,7 @@ class Importer: NSObject, XMLParserDelegate {
         if let date = formatter.date(from: attributeDict["endDate"]!) {
             currentRecord.endDate = date
         }
-        if currentRecord.startDate >  currentRecord.endDate {
+        if currentRecord.startDate > currentRecord.endDate {
             currentRecord.startDate = currentRecord.endDate
         }
         if let date = formatter.date(from: attributeDict["creationDate"]!) {
@@ -251,16 +249,14 @@ class Importer: NSObject, XMLParserDelegate {
 
     func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
         if elementName == "Record" || elementName == "Workout" {
-
-            allRecords.append(currentRecord)
+            readCount += 1
             if loggingEnabled {
                 os_log("Record: %@", currentRecord.description)
             }
             DispatchQueue.main.async {
-                self.readCounterLabel?.text = "\(self.allRecords.count)"
+                self.readCounterLabel?.text = "\(self.readCount)"
             }
-            saveRecord(item: currentRecord, withSuccess: {
-            }, failure: {
+            saveRecord(item: currentRecord, withSuccess: {}, failure: {
                 if self.loggingEnabled {
                     os_log("fail to process record")
                 }
