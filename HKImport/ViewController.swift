@@ -17,8 +17,23 @@ class ViewController: UIViewController {
     var dataImporter = Importer()
 
     @IBAction func start(_ sender: Any) {
+        let fileManager = FileManager.default
+        let documentsURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        var path: URL?
+        do {
+            let fileURLs = try fileManager.contentsOfDirectory(at: documentsURL, includingPropertiesForKeys: nil)
+            if let url = fileURLs.first, url.absoluteString.hasSuffix("export.xml") {
+                path = url
+            }
+        } catch {
+        }
+
         dataImporter = Importer {
-            if let path = Bundle.main.url(forResource: "export", withExtension: "xml") {
+            if path == nil {
+                path = Bundle.main.url(forResource: "export", withExtension: "xml")
+            }
+
+            if let path = path {
                 if let parser = XMLParser(contentsOf: path) {
                     parser.delegate = self.dataImporter
                     self.dataImporter.readCounterLabel  = self.readCounter
