@@ -164,30 +164,7 @@ class Importer: NSObject, XMLParserDelegate {
         if elementName == "Record" {
             parseRecordFromAttributes(attributeDict)
         } else if elementName == "MetadataEntry" {
-            var key: String?
-            var value: Any?
-            for (attributeKey, attributeValue) in attributeDict {
-                if attributeKey == "key" {
-                    key = attributeValue
-                }
-                if attributeKey == "value" {
-                    if let intValue = Int(attributeValue) {
-                        value = intValue
-                    } else {
-                        value = attributeValue
-                    }
-                    if attributeValue.hasSuffix("%") {
-                        let components = attributeValue.split(separator: " ")
-                        value = HKQuantity.init(unit: .percent(), doubleValue: (formatter?.number(from: String(components.first!))!.doubleValue)!)
-                    }
-                }
-            }
-
-            currentRecord.metadata = [String: Any]()
-            if let key = key, let value = value, key != "HKMetadataKeySyncIdentifier" {
-                currentRecord.metadata?[key] = value
-                print(currentRecord.metadata!)
-            }
+            parseMetaDataFromAttributes(attributeDict)
         } else if elementName == "Workout" {
             parseWorkoutFromAttributes(attributeDict)
         } else {
@@ -214,6 +191,32 @@ class Importer: NSObject, XMLParserDelegate {
         }
         if let date = formatter.date(from: attributeDict["creationDate"]!) {
             currentRecord.creationDate = date
+        }
+    }
+
+    fileprivate func parseMetaDataFromAttributes(_ attributeDict: [String: String]) {
+        var key: String?
+        var value: Any?
+        for (attributeKey, attributeValue) in attributeDict {
+            if attributeKey == "key" {
+                key = attributeValue
+            }
+            if attributeKey == "value" {
+                if let intValue = Int(attributeValue) {
+                    value = intValue
+                } else {
+                    value = attributeValue
+                }
+                if attributeValue.hasSuffix("%") {
+                    let components = attributeValue.split(separator: " ")
+                    value = HKQuantity.init(unit: .percent(), doubleValue: (formatter?.number(from: String(components.first!))!.doubleValue)!)
+                }
+            }
+        }
+
+        currentRecord.metadata = [String: Any]()
+        if let key = key, let value = value, key != "HKMetadataKeySyncIdentifier" {
+            currentRecord.metadata?[key] = value
         }
     }
 
