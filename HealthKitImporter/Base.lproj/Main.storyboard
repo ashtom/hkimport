@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -18,32 +17,32 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Read count:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z9t-GN-AW0">
-                                <rect key="frame" x="20" y="40" width="92" height="20.5"/>
+                                <rect key="frame" x="20" y="20" width="92" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Write count:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bcT-qk-a2K">
-                                <rect key="frame" x="20" y="70.5" width="93.5" height="20.5"/>
+                                <rect key="frame" x="20" y="51" width="93.5" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Q8-iE-G20">
-                                <rect key="frame" x="127" y="40" width="10.5" height="21"/>
+                                <rect key="frame" x="127" y="20" width="10.5" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WUh-M4-j3Z">
-                                <rect key="frame" x="127" y="70.5" width="10.5" height="21"/>
+                                <rect key="frame" x="127" y="51" width="10.5" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FJO-Hx-4yB">
-                                <rect key="frame" x="135.5" y="318.5" width="103" height="30"/>
-                                <state key="normal" title="Start exporting"/>
+                                <rect key="frame" x="146" y="318.5" width="83" height="30"/>
+                                <state key="normal" title="Start Import"/>
                                 <connections>
                                     <action selector="start:" destination="BYZ-38-t0r" eventType="touchUpInside" id="XbE-HH-k9s"/>
                                 </connections>
@@ -51,21 +50,28 @@
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="GXk-ob-zS4">
                                 <rect key="frame" x="20" y="398.5" width="335" height="248.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <string key="text">* To export your own values, get an export.xml file from a device containing health kit data and replace the one added to this project.
-(HealthKit app-&gt;User Icon-&gt;Export Health Data)
+                                <string key="text">To export your own values, get an export.xml file from a device containing health data and replace the one added to this project:
 
-** Not all HK record types were added to this importer, feel free to add more of the missing types</string>
+1. Open Health app
+2. Tap your avatar in the top-right corner
+3. Tap Export All Health Data
+4. Airdrop the exported file to your Mac
+5. Replace the export.xml file in the project
+
+Not all HealthKit record types are supported.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="7Q8-iE-G20" secondAttribute="trailing" symbolic="YES" id="2YM-wl-Jav"/>
                             <constraint firstItem="WUh-M4-j3Z" firstAttribute="leading" secondItem="7Q8-iE-G20" secondAttribute="leading" id="2b9-bA-o99"/>
                             <constraint firstItem="7Q8-iE-G20" firstAttribute="leading" secondItem="z9t-GN-AW0" secondAttribute="trailing" constant="15" id="91Q-uA-lTc"/>
                             <constraint firstItem="FJO-Hx-4yB" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="AW7-zz-ur6"/>
                             <constraint firstItem="GXk-ob-zS4" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="FLD-D4-KxH"/>
                             <constraint firstItem="7Q8-iE-G20" firstAttribute="top" secondItem="z9t-GN-AW0" secondAttribute="top" id="GTt-2c-3bV"/>
+                            <constraint firstItem="WUh-M4-j3Z" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="bcT-qk-a2K" secondAttribute="trailing" constant="8" symbolic="YES" id="GzU-DB-KJU"/>
                             <constraint firstItem="z9t-GN-AW0" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="JQU-H8-RHl"/>
                             <constraint firstItem="WUh-M4-j3Z" firstAttribute="top" secondItem="bcT-qk-a2K" secondAttribute="top" id="SPf-qf-ZWr"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="GXk-ob-zS4" secondAttribute="trailing" constant="20" id="UwU-fQ-VXl"/>
@@ -74,6 +80,7 @@
                             <constraint firstItem="GXk-ob-zS4" firstAttribute="top" secondItem="FJO-Hx-4yB" secondAttribute="bottom" constant="50" id="bum-ad-SIb"/>
                             <constraint firstItem="bcT-qk-a2K" firstAttribute="top" secondItem="z9t-GN-AW0" secondAttribute="bottom" constant="10" id="cNh-e8-XBN"/>
                             <constraint firstItem="z9t-GN-AW0" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="gWH-zU-mIp"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="WUh-M4-j3Z" secondAttribute="trailing" symbolic="YES" id="nd6-V0-oxB"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="GXk-ob-zS4" secondAttribute="bottom" constant="20" id="tC9-PT-8CV"/>
                             <constraint firstItem="FJO-Hx-4yB" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="uXT-Da-l9e"/>
                             <constraint firstItem="bcT-qk-a2K" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="y9s-Ra-Qja"/>
