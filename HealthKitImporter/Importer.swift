@@ -53,13 +53,12 @@ class Importer: NSObject, XMLParserDelegate {
     var readCounterLabel: UILabel?
     var writeCounterLabel: UILabel?
 
+    // swiftlint:disable:next function_body_length
     convenience init(completion: @escaping () -> Void) {
         self.init()
 
         self.healthStore = HKHealthStore.init()
-            let shareReadObjectTypes: Set<HKSampleType>? = [
-            HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.stepCount)!,
-            HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.flightsClimbed)!,
+        let shareReadObjectTypes: Set<HKSampleType>? = [
             // Body Measurements
             HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.height)!,
             HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.bodyMass)!,
@@ -71,11 +70,13 @@ class Importer: NSObject, XMLParserDelegate {
             HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.dietaryEnergyConsumed)!,
             HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.bloodGlucose)!,
             // Fitness
+            HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.stepCount)!,
+            HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.flightsClimbed)!,
             HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.activeEnergyBurned)!,
             HKWorkoutType.workoutType(),
             // Category
             HKQuantityType.categoryType(forIdentifier: HKCategoryTypeIdentifier.sleepAnalysis)!,
-            //Heart rate
+            // Heart rate
             HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.heartRate)!,
             HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.heartRateVariabilitySDNN)!,
             HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.restingHeartRate)!,
@@ -157,54 +158,62 @@ class Importer: NSObject, XMLParserDelegate {
     func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String: String]) {
         eName = elementName
         if elementName == "Record" {
-            currentRecord.type = attributeDict["type"]!
-            currentRecord.sourceName = attributeDict["sourceName"] ??  ""
-            currentRecord.sourceVersion = attributeDict["sourceVersion"] ??  ""
-            currentRecord.value = Double(attributeDict["value"] ?? "0") ?? 0
-            currentRecord.unit = attributeDict["unit"] ?? ""
-            let formatter = DateFormatter()
-            formatter.dateFormat = "yyyy-MM-dd hh:mm:ss Z"
-            if let date = formatter.date(from: attributeDict["startDate"]!) {
-                currentRecord.startDate = date
-            }
-            if let date = formatter.date(from: attributeDict["endDate"]!) {
-                currentRecord.endDate = date
-            }
-            if currentRecord.startDate >  currentRecord.endDate {
-                currentRecord.startDate = currentRecord.endDate
-            }
-            if let date = formatter.date(from: attributeDict["creationDate"]!) {
-                currentRecord.creationDate = date
-            }
+            parseRecordFromAttributes(attributeDict)
         } else if elementName == "MetadataEntry" {
             currentRecord.metadata = attributeDict
         } else if elementName == "Workout" {
-            currentRecord.type = HKObjectType.workoutType().identifier
-            currentRecord.activityType = HKWorkoutActivityType.activityTypeForExportedString(attributeDict["workoutActivityType"] ?? "")
-            currentRecord.sourceName = attributeDict["sourceName"] ??  ""
-            currentRecord.sourceVersion = attributeDict["sourceVersion"] ??  ""
-            currentRecord.value = Double(attributeDict["duration"] ?? "0") ?? 0
-            currentRecord.unit = attributeDict["durationUnit"] ?? ""
-            currentRecord.totalDistance = Double(attributeDict["totalDistance"] ?? "0") ?? 0
-            currentRecord.totalDistanceUnit = attributeDict["totalDistanceUnit"] ??  ""
-            currentRecord.totalEnergyBurned = Double(attributeDict["totalEnergyBurned"] ?? "0") ?? 0
-            currentRecord.totalEnergyBurnedUnit = attributeDict["totalEnergyBurnedUnit"] ??  ""
-            let formatter = DateFormatter()
-            formatter.dateFormat = "yyyy-MM-dd hh:mm:ss Z"
-            if let date = formatter.date(from: attributeDict["startDate"]!) {
-                currentRecord.startDate = date
-            }
-            if let date = formatter.date(from: attributeDict["endDate"]!) {
-                currentRecord.endDate = date
-            }
-            if currentRecord.startDate >  currentRecord.endDate {
-                currentRecord.startDate = currentRecord.endDate
-            }
-            if let date = formatter.date(from: attributeDict["creationDate"]!) {
-                currentRecord.creationDate = date
-            }
+            parseWorkoutFromAttributes(attributeDict)
         } else {
             return
+        }
+    }
+
+    fileprivate func parseRecordFromAttributes(_ attributeDict: [String: String]) {
+        currentRecord.type = attributeDict["type"]!
+        currentRecord.sourceName = attributeDict["sourceName"] ??  ""
+        currentRecord.sourceVersion = attributeDict["sourceVersion"] ??  ""
+        currentRecord.value = Double(attributeDict["value"] ?? "0") ?? 0
+        currentRecord.unit = attributeDict["unit"] ?? ""
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd hh:mm:ss Z"
+        if let date = formatter.date(from: attributeDict["startDate"]!) {
+            currentRecord.startDate = date
+        }
+        if let date = formatter.date(from: attributeDict["endDate"]!) {
+            currentRecord.endDate = date
+        }
+        if currentRecord.startDate >  currentRecord.endDate {
+            currentRecord.startDate = currentRecord.endDate
+        }
+        if let date = formatter.date(from: attributeDict["creationDate"]!) {
+            currentRecord.creationDate = date
+        }
+    }
+
+    fileprivate func parseWorkoutFromAttributes(_ attributeDict: [String: String]) {
+        currentRecord.type = HKObjectType.workoutType().identifier
+        currentRecord.activityType = HKWorkoutActivityType.activityTypeForExportedString(attributeDict["workoutActivityType"] ?? "")
+        currentRecord.sourceName = attributeDict["sourceName"] ??  ""
+        currentRecord.sourceVersion = attributeDict["sourceVersion"] ??  ""
+        currentRecord.value = Double(attributeDict["duration"] ?? "0") ?? 0
+        currentRecord.unit = attributeDict["durationUnit"] ?? ""
+        currentRecord.totalDistance = Double(attributeDict["totalDistance"] ?? "0") ?? 0
+        currentRecord.totalDistanceUnit = attributeDict["totalDistanceUnit"] ??  ""
+        currentRecord.totalEnergyBurned = Double(attributeDict["totalEnergyBurned"] ?? "0") ?? 0
+        currentRecord.totalEnergyBurnedUnit = attributeDict["totalEnergyBurnedUnit"] ??  ""
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd hh:mm:ss Z"
+        if let date = formatter.date(from: attributeDict["startDate"]!) {
+            currentRecord.startDate = date
+        }
+        if let date = formatter.date(from: attributeDict["endDate"]!) {
+            currentRecord.endDate = date
+        }
+        if currentRecord.startDate >  currentRecord.endDate {
+            currentRecord.startDate = currentRecord.endDate
+        }
+        if let date = formatter.date(from: attributeDict["creationDate"]!) {
+            currentRecord.creationDate = date
         }
     }
 
