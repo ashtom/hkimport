@@ -11,7 +11,6 @@
 		4C8B9FD31FB1D757007C2D4F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8B9FD21FB1D757007C2D4F /* AppDelegate.swift */; };
 		4C8B9FD51FB1D757007C2D4F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8B9FD41FB1D757007C2D4F /* ViewController.swift */; };
 		4C8B9FD81FB1D757007C2D4F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C8B9FD61FB1D757007C2D4F /* Main.storyboard */; };
-		4C8B9FDB1FB1D757007C2D4F /* HealthKitImporter.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4C8B9FD91FB1D757007C2D4F /* HealthKitImporter.xcdatamodeld */; };
 		4C8B9FDD1FB1D757007C2D4F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C8B9FDC1FB1D757007C2D4F /* Assets.xcassets */; };
 		4C8B9FE01FB1D757007C2D4F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C8B9FDE1FB1D757007C2D4F /* LaunchScreen.storyboard */; };
 		4C8BA0041FB1D921007C2D4F /* Importer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8BA0031FB1D921007C2D4F /* Importer.swift */; };
@@ -20,16 +19,15 @@
 
 /* Begin PBXFileReference section */
 		4C7D60321FC178FC00BD7FC1 /* export.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = export.xml; sourceTree = "<group>"; };
-		4C8B9FCF1FB1D757007C2D4F /* HealthKitImporter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HealthKitImporter.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4C8B9FCF1FB1D757007C2D4F /* HKImport.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HKImport.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C8B9FD21FB1D757007C2D4F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4C8B9FD41FB1D757007C2D4F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		4C8B9FD71FB1D757007C2D4F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		4C8B9FDA1FB1D757007C2D4F /* HealthKitImporter.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HealthKitImporter.xcdatamodel; sourceTree = "<group>"; };
 		4C8B9FDC1FB1D757007C2D4F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4C8B9FDF1FB1D757007C2D4F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4C8B9FE11FB1D757007C2D4F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4C8BA0031FB1D921007C2D4F /* Importer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Importer.swift; sourceTree = "<group>"; };
-		4C8BA0071FB1EA45007C2D4F /* HealthKitImporter.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HealthKitImporter.entitlements; sourceTree = "<group>"; };
+		4C8BA0071FB1EA45007C2D4F /* HKImport.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HKImport.entitlements; sourceTree = "<group>"; };
 		4C8BA0091FB1EA45007C2D4F /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -48,7 +46,7 @@
 		4C8B9FC61FB1D757007C2D4F = {
 			isa = PBXGroup;
 			children = (
-				4C8B9FD11FB1D757007C2D4F /* HealthKitImporter */,
+				4C8B9FD11FB1D757007C2D4F /* HKImport */,
 				4D280C19247B80D500D9162E /* Data */,
 				4C8B9FD01FB1D757007C2D4F /* Products */,
 				4C8BA0081FB1EA45007C2D4F /* Frameworks */,
@@ -58,25 +56,24 @@
 		4C8B9FD01FB1D757007C2D4F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				4C8B9FCF1FB1D757007C2D4F /* HealthKitImporter.app */,
+				4C8B9FCF1FB1D757007C2D4F /* HKImport.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		4C8B9FD11FB1D757007C2D4F /* HealthKitImporter */ = {
+		4C8B9FD11FB1D757007C2D4F /* HKImport */ = {
 			isa = PBXGroup;
 			children = (
 				4C8B9FD21FB1D757007C2D4F /* AppDelegate.swift */,
 				4C8B9FDC1FB1D757007C2D4F /* Assets.xcassets */,
-				4C8BA0071FB1EA45007C2D4F /* HealthKitImporter.entitlements */,
-				4C8B9FD91FB1D757007C2D4F /* HealthKitImporter.xcdatamodeld */,
+				4C8BA0071FB1EA45007C2D4F /* HKImport.entitlements */,
 				4C8BA0031FB1D921007C2D4F /* Importer.swift */,
 				4C8B9FE11FB1D757007C2D4F /* Info.plist */,
 				4C8B9FDE1FB1D757007C2D4F /* LaunchScreen.storyboard */,
 				4C8B9FD61FB1D757007C2D4F /* Main.storyboard */,
 				4C8B9FD41FB1D757007C2D4F /* ViewController.swift */,
 			);
-			path = HealthKitImporter;
+			path = HKImport;
 			sourceTree = "<group>";
 		};
 		4C8BA0081FB1EA45007C2D4F /* Frameworks */ = {
@@ -98,9 +95,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		4C8B9FCE1FB1D757007C2D4F /* HealthKitImporter */ = {
+		4C8B9FCE1FB1D757007C2D4F /* HKImport */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4C8B9FFA1FB1D757007C2D4F /* Build configuration list for PBXNativeTarget "HealthKitImporter" */;
+			buildConfigurationList = 4C8B9FFA1FB1D757007C2D4F /* Build configuration list for PBXNativeTarget "HKImport" */;
 			buildPhases = (
 				4C8B9FCB1FB1D757007C2D4F /* Sources */,
 				4C8B9FCC1FB1D757007C2D4F /* Frameworks */,
@@ -111,9 +108,9 @@
 			);
 			dependencies = (
 			);
-			name = HealthKitImporter;
+			name = HKImport;
 			productName = HealthKitImporter;
-			productReference = 4C8B9FCF1FB1D757007C2D4F /* HealthKitImporter.app */;
+			productReference = 4C8B9FCF1FB1D757007C2D4F /* HKImport.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -138,7 +135,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 4C8B9FCA1FB1D757007C2D4F /* Build configuration list for PBXProject "HealthKitImporter" */;
+			buildConfigurationList = 4C8B9FCA1FB1D757007C2D4F /* Build configuration list for PBXProject "HKImport" */;
 			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -151,7 +148,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				4C8B9FCE1FB1D757007C2D4F /* HealthKitImporter */,
+				4C8B9FCE1FB1D757007C2D4F /* HKImport */,
 			);
 		};
 /* End PBXProject section */
@@ -197,7 +194,6 @@
 			files = (
 				4C8BA0041FB1D921007C2D4F /* Importer.swift in Sources */,
 				4C8B9FD51FB1D757007C2D4F /* ViewController.swift in Sources */,
-				4C8B9FDB1FB1D757007C2D4F /* HealthKitImporter.xcdatamodeld in Sources */,
 				4C8B9FD31FB1D757007C2D4F /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -339,13 +335,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = HealthKitImporter/HealthKitImporter.entitlements;
+				CODE_SIGN_ENTITLEMENTS = HKImport/HKImport.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Q25LVLEHFB;
-				INFOPLIST_FILE = HealthKitImporter/Info.plist;
+				INFOPLIST_FILE = HKImport/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = test.boaz.HealthKitImporter;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = io.entire.hkimport;
+				PRODUCT_NAME = HKImport;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -355,13 +351,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = HealthKitImporter/HealthKitImporter.entitlements;
+				CODE_SIGN_ENTITLEMENTS = HKImport/HKImport.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Q25LVLEHFB;
-				INFOPLIST_FILE = HealthKitImporter/Info.plist;
+				INFOPLIST_FILE = HKImport/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = test.boaz.HealthKitImporter;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = io.entire.hkimport;
+				PRODUCT_NAME = HKImport;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -370,7 +366,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		4C8B9FCA1FB1D757007C2D4F /* Build configuration list for PBXProject "HealthKitImporter" */ = {
+		4C8B9FCA1FB1D757007C2D4F /* Build configuration list for PBXProject "HKImport" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4C8B9FF81FB1D757007C2D4F /* Debug */,
@@ -379,7 +375,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4C8B9FFA1FB1D757007C2D4F /* Build configuration list for PBXNativeTarget "HealthKitImporter" */ = {
+		4C8B9FFA1FB1D757007C2D4F /* Build configuration list for PBXNativeTarget "HKImport" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4C8B9FFB1FB1D757007C2D4F /* Debug */,
@@ -389,19 +385,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		4C8B9FD91FB1D757007C2D4F /* HealthKitImporter.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				4C8B9FDA1FB1D757007C2D4F /* HealthKitImporter.xcdatamodel */,
-			);
-			currentVersion = 4C8B9FDA1FB1D757007C2D4F /* HealthKitImporter.xcdatamodel */;
-			path = HealthKitImporter.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 4C8B9FC71FB1D757007C2D4F /* Project object */;
 }

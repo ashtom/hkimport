@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:HealthKitImporter.xcodeproj">
+      location = "self:/Users/thomi/Projects/hkimp/HKImport.xcodeproj">
    </FileRef>
 </Workspace>
