@@ -44,6 +44,8 @@ class HealthRecord: CustomStringConvertible {
 }
 
 class Importer: NSObject, XMLParserDelegate {
+    let loggingEnabled = false
+
     var healthStore: HKHealthStore?
 
     var allRecords: [HealthRecord] = []
@@ -147,7 +149,7 @@ class Importer: NSObject, XMLParserDelegate {
             HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.bloodAlcoholContent)!
         ]
         self.healthStore?.requestAuthorization(toShare: shareReadObjectTypes, read: shareReadObjectTypes, completion: { _, error in
-            if let error = error {
+            if let error = error, self.loggingEnabled {
                 os_log("Error: %@", error.localizedDescription)
             } else {
                 completion()
@@ -251,13 +253,17 @@ class Importer: NSObject, XMLParserDelegate {
         if elementName == "Record" || elementName == "Workout" {
 
             allRecords.append(currentRecord)
-            os_log("Record: %@", currentRecord.description)
+            if loggingEnabled {
+                os_log("Record: %@", currentRecord.description)
+            }
             DispatchQueue.main.async {
                 self.readCounterLabel?.text = "\(self.allRecords.count)"
             }
             saveRecord(item: currentRecord, withSuccess: {
             }, failure: {
-                os_log("fail to process record")
+                if self.loggingEnabled {
+                    os_log("fail to process record")
+                }
             })
         }
     }
@@ -300,7 +306,7 @@ class Importer: NSObject, XMLParserDelegate {
                 device: nil,
                 metadata: item.metadata
             )
-        } else {
+        } else if loggingEnabled {
             os_log("Didn't catch this item: %@", item.description)
         }
         if let hkSample = hkSample, (self.healthStore?.authorizationStatus(for: hkSample.sampleType) == HKAuthorizationStatus.sharingAuthorized) {
@@ -318,7 +324,9 @@ class Importer: NSObject, XMLParserDelegate {
     func saveSamples(samples: [HKSample], withSuccess successBlock: @escaping () -> Void, failure failureBlock: @escaping () -> Void) {
         self.healthStore?.save(samples, withCompletion: { (success, error) in
             if !success {
-                os_log("An error occured saving the sample. The error was: %@.", error.debugDescription)
+                if self.loggingEnabled {
+                    os_log("An error occured saving the sample. The error was: %@.", error.debugDescription)
+                }
                 failureBlock()
             }
             DispatchQueue.main.async {
