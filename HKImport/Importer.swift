@@ -48,13 +48,15 @@ class Importer: NSObject, XMLParserDelegate {
 
     var healthStore: HKHealthStore?
 
+    var cutDate: Date?
     var allSamples: [HKSample] = []
     var authorizedTypes: [HKSampleType: Bool] = [:]
     var readCount = 0
     var currentRecord: HealthRecord = HealthRecord.init()
     var readCounterLabel: UILabel?
     var writeCounterLabel: UILabel?
-    var formatter: NumberFormatter?
+    var numberFormatter: NumberFormatter?
+    var dateFormatter: DateFormatter?
 
     // swiftlint:disable:next function_body_length
     convenience init(completion: @escaping () -> Void) {
@@ -156,9 +158,14 @@ class Importer: NSObject, XMLParserDelegate {
             }
         })
 
-        self.formatter = NumberFormatter.init()
-        formatter?.locale = Locale.current
-        formatter?.numberStyle = .decimal
+        self.numberFormatter = NumberFormatter.init()
+        numberFormatter?.locale = Locale.current
+        numberFormatter?.numberStyle = .decimal
+
+        self.dateFormatter = DateFormatter()
+        dateFormatter?.dateFormat = "yyyy-MM-dd HH:mm:ss Z"
+
+        self.cutDate = Calendar.current.date(byAdding: .month, value: -6, to: Date())
     }
 
     func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String: String]) {
@@ -179,18 +186,16 @@ class Importer: NSObject, XMLParserDelegate {
         currentRecord.sourceVersion = attributeDict["sourceVersion"] ??  ""
         currentRecord.value = Double(attributeDict["value"] ?? "0") ?? 0
         currentRecord.unit = attributeDict["unit"] ?? ""
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd hh:mm:ss Z"
-        if let date = formatter.date(from: attributeDict["startDate"]!) {
+        if let date = dateFormatter?.date(from: attributeDict["startDate"]!) {
             currentRecord.startDate = date
         }
-        if let date = formatter.date(from: attributeDict["endDate"]!) {
+        if let date = dateFormatter?.date(from: attributeDict["endDate"]!) {
             currentRecord.endDate = date
         }
         if currentRecord.startDate >  currentRecord.endDate {
             currentRecord.startDate = currentRecord.endDate
         }
-        if let date = formatter.date(from: attributeDict["creationDate"]!) {
+        if let date = dateFormatter?.date(from: attributeDict["creationDate"]!) {
             currentRecord.creationDate = date
         }
     }
@@ -210,7 +215,7 @@ class Importer: NSObject, XMLParserDelegate {
                 }
                 if attributeValue.hasSuffix("%") {
                     let components = attributeValue.split(separator: " ")
-                    value = HKQuantity.init(unit: .percent(), doubleValue: (formatter?.number(from: String(components.first!))!.doubleValue)!)
+                    value = HKQuantity.init(unit: .percent(), doubleValue: (numberFormatter?.number(from: String(components.first!))!.doubleValue)!)
                 }
             }
         }
@@ -232,18 +237,16 @@ class Importer: NSObject, XMLParserDelegate {
         currentRecord.totalDistanceUnit = attributeDict["totalDistanceUnit"] ??  ""
         currentRecord.totalEnergyBurned = Double(attributeDict["totalEnergyBurned"] ?? "0") ?? 0
         currentRecord.totalEnergyBurnedUnit = attributeDict["totalEnergyBurnedUnit"] ??  ""
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd hh:mm:ss Z"
-        if let date = formatter.date(from: attributeDict["startDate"]!) {
+        if let date = dateFormatter?.date(from: attributeDict["startDate"]!) {
             currentRecord.startDate = date
         }
-        if let date = formatter.date(from: attributeDict["endDate"]!) {
+        if let date = dateFormatter?.date(from: attributeDict["endDate"]!) {
             currentRecord.endDate = date
         }
         if currentRecord.startDate > currentRecord.endDate {
             currentRecord.startDate = currentRecord.endDate
         }
-        if let date = formatter.date(from: attributeDict["creationDate"]!) {
+        if let date = dateFormatter?.date(from: attributeDict["creationDate"]!) {
             currentRecord.creationDate = date
         }
     }
@@ -257,11 +260,14 @@ class Importer: NSObject, XMLParserDelegate {
             DispatchQueue.main.async {
                 self.readCounterLabel?.text = "\(self.readCount)"
             }
-            saveRecord(item: currentRecord, withSuccess: {}, failure: {
-                if self.loggingEnabled {
-                    os_log("fail to process record")
-                }
-            })
+            if self.cutDate == nil || currentRecord.startDate > cutDate! {
+                saveRecord(item: currentRecord, withSuccess: {}, failure: {
+                    if self.loggingEnabled {
+                        os_log("fail to process record")
+                    }
+                })
+            }
+            currentRecord = HealthRecord.init()
         }
     }
 
