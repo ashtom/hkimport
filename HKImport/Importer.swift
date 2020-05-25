@@ -49,6 +49,7 @@ class Importer: NSObject, XMLParserDelegate {
     var healthStore: HKHealthStore?
 
     var allSamples: [HKSample] = []
+    var authorizedTypes: [HKSampleType: Bool] = [:]
     var readCount = 0
     var currentRecord: HealthRecord = HealthRecord.init()
     var readCounterLabel: UILabel?
@@ -305,7 +306,9 @@ class Importer: NSObject, XMLParserDelegate {
         } else if loggingEnabled {
             os_log("Didn't catch this item: %@", item.description)
         }
-        if let hkSample = hkSample, (self.healthStore?.authorizationStatus(for: hkSample.sampleType) == HKAuthorizationStatus.sharingAuthorized) {
+        if let hkSample = hkSample,
+            (authorizedTypes[hkSample.sampleType] ?? false || (self.healthStore?.authorizationStatus(for: hkSample.sampleType) == HKAuthorizationStatus.sharingAuthorized)) {
+            authorizedTypes[hkSample.sampleType] = true
             allSamples.append(hkSample)
             successBlock()
         } else {
