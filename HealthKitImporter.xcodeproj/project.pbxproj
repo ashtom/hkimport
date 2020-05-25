@@ -49,7 +49,7 @@
 			isa = PBXGroup;
 			children = (
 				4C8B9FD11FB1D757007C2D4F /* HealthKitImporter */,
-				4D280C17247AF11400D9162E /* Data */,
+				4D280C19247B80D500D9162E /* Data */,
 				4C8B9FD01FB1D757007C2D4F /* Products */,
 				4C8BA0081FB1EA45007C2D4F /* Frameworks */,
 			);
@@ -87,12 +87,12 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		4D280C17247AF11400D9162E /* Data */ = {
+		4D280C19247B80D500D9162E /* Data */ = {
 			isa = PBXGroup;
 			children = (
 				4C7D60321FC178FC00BD7FC1 /* export.xml */,
 			);
-			name = Data;
+			path = Data;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
