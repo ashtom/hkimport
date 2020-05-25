@@ -40,7 +40,7 @@ class HealthRecord: CustomStringConvertible {
     var totalEnergyBurnedUnit: String = String()
     var totalDistanceUnit: String = String()
 
-    var metadata: [String: String]?
+    var metadata: [String: Any]?
 }
 
 class Importer: NSObject, XMLParserDelegate {
@@ -52,6 +52,7 @@ class Importer: NSObject, XMLParserDelegate {
     var currentRecord: HealthRecord = HealthRecord.init()
     var readCounterLabel: UILabel?
     var writeCounterLabel: UILabel?
+    var formatter: NumberFormatter?
 
     // swiftlint:disable:next function_body_length
     convenience init(completion: @escaping () -> Void) {
@@ -145,7 +146,6 @@ class Importer: NSObject, XMLParserDelegate {
             HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.oxygenSaturation)!,
             HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.bloodAlcoholContent)!
         ]
-
         self.healthStore?.requestAuthorization(toShare: shareReadObjectTypes, read: shareReadObjectTypes, completion: { _, error in
             if let error = error {
                 os_log("Error: %@", error.localizedDescription)
@@ -153,6 +153,10 @@ class Importer: NSObject, XMLParserDelegate {
                 completion()
             }
         })
+
+        self.formatter = NumberFormatter.init()
+        formatter?.locale = Locale.current
+        formatter?.numberStyle = .decimal
     }
 
     func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String: String]) {
@@ -160,7 +164,30 @@ class Importer: NSObject, XMLParserDelegate {
         if elementName == "Record" {
             parseRecordFromAttributes(attributeDict)
         } else if elementName == "MetadataEntry" {
-            currentRecord.metadata = attributeDict
+            var key: String?
+            var value: Any?
+            for (attributeKey, attributeValue) in attributeDict {
+                if attributeKey == "key" {
+                    key = attributeValue
+                }
+                if attributeKey == "value" {
+                    if let intValue = Int(attributeValue) {
+                        value = intValue
+                    } else {
+                        value = attributeValue
+                    }
+                    if attributeValue.hasSuffix("%") {
+                        let components = attributeValue.split(separator: " ")
+                        value = HKQuantity.init(unit: .percent(), doubleValue: (formatter?.number(from: String(components.first!))!.doubleValue)!)
+                    }
+                }
+            }
+
+            currentRecord.metadata = [String: Any]()
+            if let key = key, let value = value, key != "HKMetadataKeySyncIdentifier" {
+                currentRecord.metadata?[key] = value
+                print(currentRecord.metadata!)
+            }
         } else if elementName == "Workout" {
             parseWorkoutFromAttributes(attributeDict)
         } else {
@@ -233,6 +260,13 @@ class Importer: NSObject, XMLParserDelegate {
     }
 
     func saveRecord(item: HealthRecord, withSuccess successBlock: @escaping () -> Void, failure failureBlock: @escaping () -> Void) {
+        // HealthKit raises an exception if time between end and start date is > 345600
+        let duration = item.endDate.timeIntervalSince(item.startDate)
+        if duration > 345600 {
+            failureBlock()
+            return
+        }
+
         let unit = HKUnit.init(from: item.unit!)
         let quantity = HKQuantity(unit: unit, doubleValue: item.value)
         var hkSample: HKSample?
