@@ -10,20 +10,14 @@ import UIKit
 import os.log
 
 class ViewController: UIViewController {
-    
     @IBOutlet weak var startButton: UIButton!
     @IBOutlet weak var readCounter: UILabel!
     @IBOutlet weak var writeCounter: UILabel!
-    
-    var dataImporter = HKimporter()
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
 
-    }
-    
+    var dataImporter = Importer()
+
     @IBAction func start(_ sender: Any) {
-        dataImporter = HKimporter {
+        dataImporter = Importer {
             if let path = Bundle.main.url(forResource: "export", withExtension: "xml") {
                 if let parser = XMLParser(contentsOf: path) {
                     parser.delegate = self.dataImporter
@@ -37,12 +31,4 @@ class ViewController: UIViewController {
             }
         }
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-
 }
-

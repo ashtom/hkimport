@@ -14,7 +14,7 @@
 		4C8B9FDB1FB1D757007C2D4F /* HealthKitImporter.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4C8B9FD91FB1D757007C2D4F /* HealthKitImporter.xcdatamodeld */; };
 		4C8B9FDD1FB1D757007C2D4F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C8B9FDC1FB1D757007C2D4F /* Assets.xcassets */; };
 		4C8B9FE01FB1D757007C2D4F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C8B9FDE1FB1D757007C2D4F /* LaunchScreen.storyboard */; };
-		4C8BA0041FB1D921007C2D4F /* HKimporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8BA0031FB1D921007C2D4F /* HKimporter.swift */; };
+		4C8BA0041FB1D921007C2D4F /* Importer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8BA0031FB1D921007C2D4F /* Importer.swift */; };
 		4C8BA00A1FB1EA45007C2D4F /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C8BA0091FB1EA45007C2D4F /* HealthKit.framework */; };
 /* End PBXBuildFile section */
 
@@ -28,7 +28,7 @@
 		4C8B9FDC1FB1D757007C2D4F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4C8B9FDF1FB1D757007C2D4F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4C8B9FE11FB1D757007C2D4F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4C8BA0031FB1D921007C2D4F /* HKimporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HKimporter.swift; sourceTree = "<group>"; };
+		4C8BA0031FB1D921007C2D4F /* Importer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Importer.swift; sourceTree = "<group>"; };
 		4C8BA0071FB1EA45007C2D4F /* HealthKitImporter.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HealthKitImporter.entitlements; sourceTree = "<group>"; };
 		4C8BA0091FB1EA45007C2D4F /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -70,7 +70,7 @@
 				4C8B9FDC1FB1D757007C2D4F /* Assets.xcassets */,
 				4C8BA0071FB1EA45007C2D4F /* HealthKitImporter.entitlements */,
 				4C8B9FD91FB1D757007C2D4F /* HealthKitImporter.xcdatamodeld */,
-				4C8BA0031FB1D921007C2D4F /* HKimporter.swift */,
+				4C8BA0031FB1D921007C2D4F /* Importer.swift */,
 				4C8B9FE11FB1D757007C2D4F /* Info.plist */,
 				4C8B9FDE1FB1D757007C2D4F /* LaunchScreen.storyboard */,
 				4C8B9FD61FB1D757007C2D4F /* Main.storyboard */,
@@ -105,6 +105,7 @@
 				4C8B9FCB1FB1D757007C2D4F /* Sources */,
 				4C8B9FCC1FB1D757007C2D4F /* Frameworks */,
 				4C8B9FCD1FB1D757007C2D4F /* Resources */,
+				4D280C18247B7A2200D9162E /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -169,12 +170,32 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		4D280C18247B7A2200D9162E /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nswiftlint\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		4C8B9FCB1FB1D757007C2D4F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4C8BA0041FB1D921007C2D4F /* HKimporter.swift in Sources */,
+				4C8BA0041FB1D921007C2D4F /* Importer.swift in Sources */,
 				4C8B9FD51FB1D757007C2D4F /* ViewController.swift in Sources */,
 				4C8B9FDB1FB1D757007C2D4F /* HealthKitImporter.xcdatamodeld in Sources */,
 				4C8B9FD31FB1D757007C2D4F /* AppDelegate.swift in Sources */,

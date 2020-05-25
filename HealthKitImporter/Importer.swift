@@ -11,7 +11,7 @@ import HealthKit
 import os.log
 
 extension CustomStringConvertible {
-    var description : String {
+    var description: String {
         var description: String = "\(type(of: self))\n"
         let selfMirror = Mirror(reflecting: self)
         for child in selfMirror.children {
@@ -23,7 +23,7 @@ extension CustomStringConvertible {
     }
 }
 
-class HKRecord: CustomStringConvertible {
+class HealthRecord: CustomStringConvertible {
     var type: String = String()
     var value: Double = 0
     var unit: String?
@@ -32,40 +32,34 @@ class HKRecord: CustomStringConvertible {
     var startDate: Date = Date()
     var endDate: Date = Date()
     var creationDate: Date = Date()
-    
-    //for workouts
+
+    // Workout data
     var activityType: HKWorkoutActivityType? = HKWorkoutActivityType(rawValue: 0)
     var totalEnergyBurned: Double = 0
     var totalDistance: Double = 0
     var totalEnergyBurnedUnit: String = String()
     var totalDistanceUnit: String = String()
 
-    var metadata: [String:String]?
+    var metadata: [String: String]?
 }
 
-class HKimporter : NSObject, XMLParserDelegate {
+class Importer: NSObject, XMLParserDelegate {
+    var healthStore: HKHealthStore?
 
-    var healthStore:HKHealthStore?
-    
-    var allHKRecords: [HKRecord] = []
-    var allHKSampels: [HKSample] = []
-    
+    var allRecords: [HealthRecord] = []
+    var allSamples: [HKSample] = []
     var eName: String = String()
-    var currRecord: HKRecord = HKRecord.init()
-    
-    var readCounterLabel: UILabel? = nil
-    var writeCounterLabel: UILabel? = nil
-    
-    
-    convenience init(completion:@escaping ()->Void) {
+    var currentRecord: HealthRecord = HealthRecord.init()
+    var readCounterLabel: UILabel?
+    var writeCounterLabel: UILabel?
 
+    convenience init(completion: @escaping () -> Void) {
         self.init()
 
         self.healthStore = HKHealthStore.init()
-        
-        let shareReadObjectTypes:Set<HKSampleType>? = [
-            HKQuantityType.quantityType(forIdentifier:HKQuantityTypeIdentifier.stepCount)!,
-            HKQuantityType.quantityType(forIdentifier:HKQuantityTypeIdentifier.flightsClimbed)!,
+            let shareReadObjectTypes: Set<HKSampleType>? = [
+            HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.stepCount)!,
+            HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.flightsClimbed)!,
             // Body Measurements
             HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.height)!,
             HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.bodyMass)!,
@@ -73,9 +67,7 @@ class HKimporter : NSObject, XMLParserDelegate {
             // Nutrient
             HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.dietaryProtein)!,
             HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.dietaryFatTotal)!,
-            //                        HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.dietaryFatSaturated)!,
             HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.dietaryCarbohydrates)!,
-            //                        HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.dietarySugar)!,
             HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.dietaryEnergyConsumed)!,
             HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.bloodGlucose)!,
             // Fitness
@@ -83,12 +75,10 @@ class HKimporter : NSObject, XMLParserDelegate {
             HKWorkoutType.workoutType(),
             // Category
             HKQuantityType.categoryType(forIdentifier: HKCategoryTypeIdentifier.sleepAnalysis)!,
-            
             //Heart rate
             HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.heartRate)!,
             HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.heartRateVariabilitySDNN)!,
             HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.restingHeartRate)!,
-
             // Measurements
             HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.bodyFatPercentage)!,
             HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.height)!,
@@ -152,9 +142,10 @@ class HKimporter : NSObject, XMLParserDelegate {
             HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.basalBodyTemperature)!,
             HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.bloodGlucose)!,
             HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.oxygenSaturation)!,
-            HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.bloodAlcoholContent)!]
+            HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.bloodAlcoholContent)!
+        ]
 
-        self.healthStore?.requestAuthorization(toShare: shareReadObjectTypes, read: shareReadObjectTypes, completion: { (res, error) in
+        self.healthStore?.requestAuthorization(toShare: shareReadObjectTypes, read: shareReadObjectTypes, completion: { _, error in
             if let error = error {
                 os_log("Error: %@", error.localizedDescription)
             } else {
@@ -163,90 +154,80 @@ class HKimporter : NSObject, XMLParserDelegate {
         })
     }
 
-    func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]) {
+    func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String: String]) {
         eName = elementName
         if elementName == "Record" {
-            currRecord.type = attributeDict["type"]!
-            currRecord.sourceName = attributeDict["sourceName"] ??  ""
-            currRecord.sourceVersion = attributeDict["sourceVersion"] ??  ""
-            currRecord.value = Double(attributeDict["value"] ?? "0") ?? 0
-            currRecord.unit = attributeDict["unit"] ?? ""
-            
+            currentRecord.type = attributeDict["type"]!
+            currentRecord.sourceName = attributeDict["sourceName"] ??  ""
+            currentRecord.sourceVersion = attributeDict["sourceVersion"] ??  ""
+            currentRecord.value = Double(attributeDict["value"] ?? "0") ?? 0
+            currentRecord.unit = attributeDict["unit"] ?? ""
             let formatter = DateFormatter()
             formatter.dateFormat = "yyyy-MM-dd hh:mm:ss Z"
             if let date = formatter.date(from: attributeDict["startDate"]!) {
-                currRecord.startDate = date
+                currentRecord.startDate = date
             }
-            if let date = formatter.date(from: attributeDict["endDate"]!){
-                currRecord.endDate = date
+            if let date = formatter.date(from: attributeDict["endDate"]!) {
+                currentRecord.endDate = date
             }
-            
-            if currRecord.startDate >  currRecord.endDate {
-                currRecord.startDate = currRecord.endDate
+            if currentRecord.startDate >  currentRecord.endDate {
+                currentRecord.startDate = currentRecord.endDate
             }
-            
-            if let date = formatter.date(from: attributeDict["creationDate"]!){
-                currRecord.creationDate = date
+            if let date = formatter.date(from: attributeDict["creationDate"]!) {
+                currentRecord.creationDate = date
             }
         } else if elementName == "MetadataEntry" {
-            currRecord.metadata = attributeDict
+            currentRecord.metadata = attributeDict
         } else if elementName == "Workout" {
-            currRecord.type = HKObjectType.workoutType().identifier
-            currRecord.activityType = activityByName(activityName: attributeDict["workoutActivityType"] ?? "")
-            currRecord.sourceName = attributeDict["sourceName"] ??  ""
-            currRecord.sourceVersion = attributeDict["sourceVersion"] ??  ""
-            currRecord.value = Double(attributeDict["duration"] ?? "0") ?? 0
-            currRecord.unit = attributeDict["durationUnit"] ?? ""
-            currRecord.totalDistance = Double(attributeDict["totalDistance"] ?? "0") ?? 0
-            currRecord.totalDistanceUnit = attributeDict["totalDistanceUnit"] ??  ""
-            currRecord.totalEnergyBurned = Double(attributeDict["totalEnergyBurned"] ?? "0") ?? 0
-            currRecord.totalEnergyBurnedUnit = attributeDict["totalEnergyBurnedUnit"] ??  ""
-            
+            currentRecord.type = HKObjectType.workoutType().identifier
+            currentRecord.activityType = activityByName(activityName: attributeDict["workoutActivityType"] ?? "")
+            currentRecord.sourceName = attributeDict["sourceName"] ??  ""
+            currentRecord.sourceVersion = attributeDict["sourceVersion"] ??  ""
+            currentRecord.value = Double(attributeDict["duration"] ?? "0") ?? 0
+            currentRecord.unit = attributeDict["durationUnit"] ?? ""
+            currentRecord.totalDistance = Double(attributeDict["totalDistance"] ?? "0") ?? 0
+            currentRecord.totalDistanceUnit = attributeDict["totalDistanceUnit"] ??  ""
+            currentRecord.totalEnergyBurned = Double(attributeDict["totalEnergyBurned"] ?? "0") ?? 0
+            currentRecord.totalEnergyBurnedUnit = attributeDict["totalEnergyBurnedUnit"] ??  ""
             let formatter = DateFormatter()
             formatter.dateFormat = "yyyy-MM-dd hh:mm:ss Z"
             if let date = formatter.date(from: attributeDict["startDate"]!) {
-                currRecord.startDate = date
+                currentRecord.startDate = date
             }
-            if let date = formatter.date(from: attributeDict["endDate"]!){
-                currRecord.endDate = date
+            if let date = formatter.date(from: attributeDict["endDate"]!) {
+                currentRecord.endDate = date
             }
-            
-            if currRecord.startDate >  currRecord.endDate {
-                currRecord.startDate = currRecord.endDate
+            if currentRecord.startDate >  currentRecord.endDate {
+                currentRecord.startDate = currentRecord.endDate
             }
-            
-            if let date = formatter.date(from: attributeDict["creationDate"]!){
-                currRecord.creationDate = date
+            if let date = formatter.date(from: attributeDict["creationDate"]!) {
+                currentRecord.creationDate = date
             }
-        } else if elementName == "Correlation" {
-            return
         } else {
             return
         }
     }
-    
+
     func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
         if elementName == "Record" || elementName == "Workout" {
 
-            allHKRecords.append(currRecord)
-            os_log("Record: %@", currRecord.description)
+            allRecords.append(currentRecord)
+            os_log("Record: %@", currentRecord.description)
             DispatchQueue.main.async {
-                self.readCounterLabel?.text = "\(self.allHKRecords.count)"
+                self.readCounterLabel?.text = "\(self.allRecords.count)"
             }
-            saveHKRecord(item: currRecord, withSuccess: {
+            saveRecord(item: currentRecord, withSuccess: {
             }, failure: {
                 os_log("fail to process record")
             })
         }
     }
-    
-    func saveHKRecord(item:HKRecord, withSuccess successBlock: @escaping () -> Void, failure failiureBlock: @escaping () -> Void) {
-      
+
+    func saveRecord(item: HealthRecord, withSuccess successBlock: @escaping () -> Void, failure failureBlock: @escaping () -> Void) {
         let unit = HKUnit.init(from: item.unit!)
         let quantity = HKQuantity(unit: unit, doubleValue: item.value)
-        
-        var hkSample: HKSample? = nil
-        if let type = HKQuantityType.quantityType(forIdentifier:  HKQuantityTypeIdentifier(rawValue: item.type)) {
+        var hkSample: HKSample?
+        if let type = HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier(rawValue: item.type)) {
             hkSample = HKQuantitySample.init(
                 type: type,
                 quantity: quantity,
@@ -276,27 +257,23 @@ class HKimporter : NSObject, XMLParserDelegate {
         } else {
             os_log("Didn't catch this item: %@", item.description)
         }
-        
         if let hkSample = hkSample, (self.healthStore?.authorizationStatus(for: hkSample.sampleType) == HKAuthorizationStatus.sharingAuthorized) {
-            allHKSampels.append(hkSample)
+            allSamples.append(hkSample)
             successBlock()
         } else {
-            failiureBlock()
+            failureBlock()
         }
     }
-    
+
     func saveAllSamples() {
-        saveSamplesToHK(samples: self.allHKSampels, withSuccess: {
-            //
-        }, failure: {
-            //
-        })
+        saveSamples(samples: self.allSamples, withSuccess: {}, failure: {})
     }
-    func saveSamplesToHK (samples:[HKSample], withSuccess successBlock: @escaping () -> Void, failure failiureBlock: @escaping () -> Void) {
+
+    func saveSamples(samples: [HKSample], withSuccess successBlock: @escaping () -> Void, failure failureBlock: @escaping () -> Void) {
         self.healthStore?.save(samples, withCompletion: { (success, error) in
-            if (!success) {
+            if !success {
                 os_log("An error occured saving the sample. The error was: %@.", error.debugDescription)
-                failiureBlock()
+                failureBlock()
             }
             DispatchQueue.main.async {
                 self.writeCounterLabel?.text = "\(Int((self.writeCounterLabel?.text)!)! + samples.count)"
@@ -326,7 +303,6 @@ class HKimporter : NSObject, XMLParserDelegate {
             res = HKWorkoutActivityType.dance
         default:
             os_log("No support for activity: %@", activityName)
-            break;
         }
         return res!
     }
