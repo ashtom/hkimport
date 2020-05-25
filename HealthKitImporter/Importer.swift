@@ -180,7 +180,7 @@ class Importer: NSObject, XMLParserDelegate {
             currentRecord.metadata = attributeDict
         } else if elementName == "Workout" {
             currentRecord.type = HKObjectType.workoutType().identifier
-            currentRecord.activityType = activityByName(activityName: attributeDict["workoutActivityType"] ?? "")
+            currentRecord.activityType = HKWorkoutActivityType.activityTypeForExportedString(attributeDict["workoutActivityType"] ?? "")
             currentRecord.sourceName = attributeDict["sourceName"] ??  ""
             currentRecord.sourceVersion = attributeDict["sourceVersion"] ??  ""
             currentRecord.value = Double(attributeDict["duration"] ?? "0") ?? 0
@@ -282,28 +282,31 @@ class Importer: NSObject, XMLParserDelegate {
         })
     }
 
-    func activityByName(activityName: String) -> HKWorkoutActivityType {
-        var res = HKWorkoutActivityType(rawValue: 0)
-        switch activityName {
+}
+
+extension HKWorkoutActivityType {
+    static func activityTypeForExportedString(_ string: String) -> HKWorkoutActivityType {
+        var result = HKWorkoutActivityType(rawValue: 0)
+        switch string {
         case "HKWorkoutActivityTypeSwimming":
-            res = HKWorkoutActivityType.swimming
+            result = HKWorkoutActivityType.swimming
         case "HKWorkoutActivityTypeWalking":
-            res = HKWorkoutActivityType.walking
+            result = HKWorkoutActivityType.walking
         case "HKWorkoutActivityTypeRunning":
-            res = HKWorkoutActivityType.running
+            result = HKWorkoutActivityType.running
         case "HKWorkoutActivityTypeCycling":
-            res = HKWorkoutActivityType.cycling
+            result = HKWorkoutActivityType.cycling
         case "HKWorkoutActivityTypeYoga":
-            res = HKWorkoutActivityType.yoga
+            result = HKWorkoutActivityType.yoga
         case "HKWorkoutActivityTypeFunctionalStrengthTraining":
-            res = HKWorkoutActivityType.functionalStrengthTraining
+            result = HKWorkoutActivityType.functionalStrengthTraining
         case "HKWorkoutActivityTypeTraditionalStrengthTraining":
-            res = HKWorkoutActivityType.traditionalStrengthTraining
+            result = HKWorkoutActivityType.traditionalStrengthTraining
         case "HKWorkoutActivityTypeDance":
-            res = HKWorkoutActivityType.dance
+            result = HKWorkoutActivityType.dance
         default:
-            os_log("No support for activity: %@", activityName)
+            os_log("No support for activity: %@", string)
         }
-        return res!
+        return result!
     }
 }
