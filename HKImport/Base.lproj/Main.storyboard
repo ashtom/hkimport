@@ -58,7 +58,7 @@
 4. Airdrop the exported file to your Mac
 5. Replace the export.xml file in the project
 
-Not all HealthKit record types are supported.</string>
+Not all HealthKit record types are fully supported.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>

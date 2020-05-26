@@ -165,7 +165,8 @@ class Importer: NSObject, XMLParserDelegate {
         self.dateFormatter = DateFormatter()
         dateFormatter?.dateFormat = "yyyy-MM-dd HH:mm:ss Z"
 
-        self.cutDate = Calendar.current.date(byAdding: .month, value: -6, to: Date())
+        // Uncomment if you only want to import the last 6 months
+        //self.cutDate = Calendar.current.date(byAdding: .month, value: -6, to: Date())
     }
 
     func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String: String]) {
@@ -228,7 +229,7 @@ class Importer: NSObject, XMLParserDelegate {
 
     fileprivate func parseWorkoutFromAttributes(_ attributeDict: [String: String]) {
         currentRecord.type = HKObjectType.workoutType().identifier
-        currentRecord.activityType = HKWorkoutActivityType.activityTypeForExportedString(attributeDict["workoutActivityType"] ?? "")
+        currentRecord.activityType = HKWorkoutActivityType.activityTypeFromString(attributeDict["workoutActivityType"] ?? "")
         currentRecord.sourceName = attributeDict["sourceName"] ??  ""
         currentRecord.sourceVersion = attributeDict["sourceVersion"] ??  ""
         currentRecord.value = Double(attributeDict["duration"] ?? "0") ?? 0
@@ -344,28 +345,22 @@ class Importer: NSObject, XMLParserDelegate {
 }
 
 extension HKWorkoutActivityType {
-    static func activityTypeForExportedString(_ string: String) -> HKWorkoutActivityType {
-        var result = HKWorkoutActivityType(rawValue: 0)
-        switch string {
-        case "HKWorkoutActivityTypeSwimming":
-            result = HKWorkoutActivityType.swimming
-        case "HKWorkoutActivityTypeWalking":
-            result = HKWorkoutActivityType.walking
-        case "HKWorkoutActivityTypeRunning":
-            result = HKWorkoutActivityType.running
-        case "HKWorkoutActivityTypeCycling":
-            result = HKWorkoutActivityType.cycling
-        case "HKWorkoutActivityTypeYoga":
-            result = HKWorkoutActivityType.yoga
-        case "HKWorkoutActivityTypeFunctionalStrengthTraining":
-            result = HKWorkoutActivityType.functionalStrengthTraining
-        case "HKWorkoutActivityTypeTraditionalStrengthTraining":
-            result = HKWorkoutActivityType.traditionalStrengthTraining
-        case "HKWorkoutActivityTypeDance":
-            result = HKWorkoutActivityType.dance
-        default:
-            os_log("No support for activity: %@", string)
+    static func activityTypeFromString(_ string: String) -> HKWorkoutActivityType {
+        let  name = string.replacingOccurrences(of: "HKWorkoutActivityType", with: "")
+        return (values[name] ?? HKWorkoutActivityType.other)!
+    }
+
+    static var values: [String: Self] {
+        var values: [String: Self] = [:]
+        var index: UInt = 1
+        while let element = self.init(rawValue: index) {
+            if element.name == "Other" {
+                break
+            } else {
+                values[element.name] = element
+                index += 1
+            }
         }
-        return result!
+        return values
     }
 }
