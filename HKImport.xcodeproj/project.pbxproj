@@ -16,6 +16,7 @@
 		4C8BA0041FB1D921007C2D4F /* Importer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8BA0031FB1D921007C2D4F /* Importer.swift */; };
 		4C8BA00A1FB1EA45007C2D4F /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C8BA0091FB1EA45007C2D4F /* HealthKit.framework */; };
 		4DFB0F17247DB00B00D61E7F /* HKWorkoutActivityType+Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFB0F16247DB00B00D61E7F /* HKWorkoutActivityType+Name.swift */; };
+		4DFB0F19247E164200D61E7F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFB0F18247E164200D61E7F /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,7 @@
 		4C8BA0071FB1EA45007C2D4F /* HKImport.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HKImport.entitlements; sourceTree = "<group>"; };
 		4C8BA0091FB1EA45007C2D4F /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		4DFB0F16247DB00B00D61E7F /* HKWorkoutActivityType+Name.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HKWorkoutActivityType+Name.swift"; sourceTree = "<group>"; };
+		4DFB0F18247E164200D61E7F /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +70,7 @@
 			children = (
 				4C8B9FD21FB1D757007C2D4F /* AppDelegate.swift */,
 				4C8B9FDC1FB1D757007C2D4F /* Assets.xcassets */,
+				4DFB0F18247E164200D61E7F /* Constants.swift */,
 				4C8BA0071FB1EA45007C2D4F /* HKImport.entitlements */,
 				4DFB0F16247DB00B00D61E7F /* HKWorkoutActivityType+Name.swift */,
 				4C8BA0031FB1D921007C2D4F /* Importer.swift */,
@@ -195,6 +198,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4DFB0F19247E164200D61E7F /* Constants.swift in Sources */,
 				4DFB0F17247DB00B00D61E7F /* HKWorkoutActivityType+Name.swift in Sources */,
 				4C8BA0041FB1D921007C2D4F /* Importer.swift in Sources */,
 				4C8B9FD51FB1D757007C2D4F /* ViewController.swift in Sources */,

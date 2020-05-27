@@ -1,9 +1,28 @@
 import UIKit
 import HealthKit
 
-// Source: https://stackoverflow.com/a/61140433 and
+// Same parts of it are from https://stackoverflow.com/a/61140433 and
 // https://github.com/georgegreenoflondon/HKWorkoutActivityType-Descriptions/blob/master/HKWorkoutActivityType%2BDescriptions.swift
 extension HKWorkoutActivityType {
+    static func activityTypeFromString(_ string: String) -> HKWorkoutActivityType {
+        let  name = string.replacingOccurrences(of: "HKWorkoutActivityType", with: "")
+        return (values[name] ?? HKWorkoutActivityType.other)!
+    }
+
+    static var values: [String: Self] {
+        var values: [String: Self] = [:]
+        var index: UInt = 1
+        while let element = self.init(rawValue: index) {
+            if element.name == "Other" {
+                break
+            } else {
+                values[element.name] = element
+                index += 1
+            }
+        }
+        return values
+    }
+
     var name: String {
         switch self {
         case .americanFootball:             return "American Football"
