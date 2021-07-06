@@ -76,7 +76,7 @@ class Importer: NSObject, XMLParserDelegate {
         dateFormatter?.dateFormat = "yyyy-MM-dd HH:mm:ss Z"
 
         // Uncomment if you only want to import the last 6 months
-        //self.cutDate = Calendar.current.date(byAdding: .month, value: -6, to: Date())
+        // self.cutDate = Calendar.current.date(byAdding: .month, value: -6, to: Date())
     }
 
     func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String: String]) {
