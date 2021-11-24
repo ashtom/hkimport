@@ -75,8 +75,10 @@ class Importer: NSObject, XMLParserDelegate {
         self.dateFormatter = DateFormatter()
         dateFormatter?.dateFormat = "yyyy-MM-dd HH:mm:ss Z"
 
-        // Uncomment if you only want to import the last 6 months
-        // self.cutDate = Calendar.current.date(byAdding: .month, value: -6, to: Date())
+        // Uncomment if you only want to import the last 1 month
+        // If your export.xml is large, you likely need to enable this as
+        // otherwise the saveSamples method will fail
+        //self.cutDate = Calendar.current.date(byAdding: .month, value: -1, to: Date())
     }
 
     func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String: String]) {
@@ -185,7 +187,7 @@ class Importer: NSObject, XMLParserDelegate {
     func saveRecord(item: HealthRecord, withSuccess successBlock: @escaping () -> Void, failure failureBlock: @escaping () -> Void) {
         // HealthKit raises an exception if time between end and start date is > 345600
         let duration = item.endDate.timeIntervalSince(item.startDate)
-        if duration > 345600 {
+        if duration > 345600 || (item.type == "HKQuantityTypeIdentifierHeadphoneAudioExposure" && duration < 0.001) {
             failureBlock()
             return
         }
