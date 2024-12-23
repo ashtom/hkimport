@@ -7,9 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1DBCE6812D19D3E900A18A24 /* Importer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8BA0031FB1D921007C2D4F /* Importer.swift */; };
-		1DBCE6822D19D67C00A18A24 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFB0F18247E164200D61E7F /* Constants.swift */; };
-		1DBCE6832D19D69F00A18A24 /* HKWorkoutActivityType+Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFB0F16247DB00B00D61E7F /* HKWorkoutActivityType+Name.swift */; };
 		4C7D60331FC178FC00BD7FC1 /* export.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C7D60321FC178FC00BD7FC1 /* export.xml */; };
 		4C8B9FD31FB1D757007C2D4F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8B9FD21FB1D757007C2D4F /* AppDelegate.swift */; };
 		4C8B9FD51FB1D757007C2D4F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8B9FD41FB1D757007C2D4F /* ViewController.swift */; };
@@ -260,9 +257,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1DBCE6832D19D69F00A18A24 /* HKWorkoutActivityType+Name.swift in Sources */,
-				1DBCE6812D19D3E900A18A24 /* Importer.swift in Sources */,
-				1DBCE6822D19D67C00A18A24 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

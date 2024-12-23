@@ -7,9 +7,11 @@
 //
 
 import Testing
+@testable import HKImport
 import Foundation
 import HealthKit
 
+// swiftlint:disable:next function_parameter_count
 func buildDate(year: Int, month: Int, day: Int, hour: Int, minute: Int, second: Int) -> Date {
     var timezone = TimeZone(secondsFromGMT: -21600)!
     if timezone.isDaylightSavingTime() {
