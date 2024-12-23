@@ -13,6 +13,7 @@ import HealthKit
 
 // swiftlint:disable:next function_parameter_count
 func buildDate(year: Int, month: Int, day: Int, hour: Int, minute: Int, second: Int) -> Date {
+    // NOTE: to handle date parsing and timezones we always use UTC -6 as the timezone.
     var timezone = TimeZone(secondsFromGMT: -21600)!
     if timezone.isDaylightSavingTime() {
         timezone = TimeZone(secondsFromGMT: -25200)!
