@@ -48,6 +48,17 @@
                ReferencedContainer = "container:HKImport.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "1DBCE6772D19D2EC00A18A24"
+               BuildableName = "HKImportTests.xctest"
+               BlueprintName = "HKImportTests"
+               ReferencedContainer = "container:HKImport.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction

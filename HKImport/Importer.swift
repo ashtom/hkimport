@@ -43,6 +43,21 @@ class HealthRecord: CustomStringConvertible {
     var metadata: [String: Any]?
 }
 
+extension DateFormatter {
+    convenience init(dateFormat: String) {
+        self.init()
+        self.dateFormat = dateFormat
+    }
+}
+
+extension NumberFormatter {
+    convenience init(locale: Locale, numberStyle: NumberFormatter.Style) {
+        self.init()
+        self.locale = locale
+        self.numberStyle = numberStyle
+    }
+}
+
 class Importer: NSObject, XMLParserDelegate {
     var healthStore: HKHealthStore?
 
@@ -53,8 +68,8 @@ class Importer: NSObject, XMLParserDelegate {
     var currentRecord: HealthRecord = HealthRecord.init()
     var readCounterLabel: UILabel?
     var writeCounterLabel: UILabel?
-    var numberFormatter: NumberFormatter?
-    var dateFormatter: DateFormatter?
+    var numberFormatter = NumberFormatter(locale: .current, numberStyle: .decimal)
+    var dateFormatter = DateFormatter(dateFormat: "yyyy-MM-dd HH:mm:ss Z")
 
     convenience init(completion: @escaping () -> Void) {
         self.init()
@@ -68,17 +83,10 @@ class Importer: NSObject, XMLParserDelegate {
             }
         })
 
-        self.numberFormatter = NumberFormatter.init()
-        numberFormatter?.locale = Locale.current
-        numberFormatter?.numberStyle = .decimal
-
-        self.dateFormatter = DateFormatter()
-        dateFormatter?.dateFormat = "yyyy-MM-dd HH:mm:ss Z"
-
         // Uncomment if you only want to import the last 1 month
         // If your export.xml is large, you likely need to enable this as
         // otherwise the saveSamples method will fail
-        //self.cutDate = Calendar.current.date(byAdding: .month, value: -1, to: Date())
+        // self.cutDate = Calendar.current.date(byAdding: .month, value: -1, to: Date())
     }
 
     func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String: String]) {
@@ -99,16 +107,16 @@ class Importer: NSObject, XMLParserDelegate {
         currentRecord.sourceVersion = attributeDict["sourceVersion"] ??  ""
         currentRecord.value = Double(attributeDict["value"] ?? "0") ?? 0
         currentRecord.unit = attributeDict["unit"] ?? ""
-        if let date = dateFormatter?.date(from: attributeDict["startDate"]!) {
+        if let date = dateFormatter.date(from: attributeDict["startDate"]!) {
             currentRecord.startDate = date
         }
-        if let date = dateFormatter?.date(from: attributeDict["endDate"]!) {
+        if let date = dateFormatter.date(from: attributeDict["endDate"]!) {
             currentRecord.endDate = date
         }
         if currentRecord.startDate >  currentRecord.endDate {
             currentRecord.startDate = currentRecord.endDate
         }
-        if let date = dateFormatter?.date(from: attributeDict["creationDate"]!) {
+        if let date = dateFormatter.date(from: attributeDict["creationDate"]!) {
             currentRecord.creationDate = date
         }
     }
@@ -128,7 +136,7 @@ class Importer: NSObject, XMLParserDelegate {
                 }
                 if attributeValue.hasSuffix("%") {
                     let components = attributeValue.split(separator: " ")
-                    value = HKQuantity.init(unit: .percent(), doubleValue: (numberFormatter?.number(from: String(components.first!))!.doubleValue)!)
+                    value = HKQuantity.init(unit: .percent(), doubleValue: (numberFormatter.number(from: String(components.first!))!.doubleValue))
                 }
             }
         }
@@ -149,17 +157,17 @@ class Importer: NSObject, XMLParserDelegate {
         currentRecord.totalDistance = Double(attributeDict["totalDistance"] ?? "0") ?? 0
         currentRecord.totalDistanceUnit = attributeDict["totalDistanceUnit"] ??  ""
         currentRecord.totalEnergyBurned = Double(attributeDict["totalEnergyBurned"] ?? "0") ?? 0
-        currentRecord.totalEnergyBurnedUnit = attributeDict["totalEnergyBurnedUnit"] ??  ""
-        if let date = dateFormatter?.date(from: attributeDict["startDate"]!) {
+        currentRecord.totalEnergyBurnedUnit = attributeDict["totalEnergyBurnedUnit"] ?? ""
+        if let date = dateFormatter.date(from: attributeDict["startDate"] ?? "") {
             currentRecord.startDate = date
         }
-        if let date = dateFormatter?.date(from: attributeDict["endDate"]!) {
+        if let date = dateFormatter.date(from: attributeDict["endDate"] ?? "") {
             currentRecord.endDate = date
         }
         if currentRecord.startDate > currentRecord.endDate {
             currentRecord.startDate = currentRecord.endDate
         }
-        if let date = dateFormatter?.date(from: attributeDict["creationDate"]!) {
+        if let date = dateFormatter.date(from: attributeDict["creationDate"] ?? "") {
             currentRecord.creationDate = date
         }
     }
@@ -212,13 +220,16 @@ class Importer: NSObject, XMLParserDelegate {
                 metadata: item.metadata
             )
         } else if item.type == HKObjectType.workoutType().identifier {
+            let totalEnergyBurned = item.totalEnergyBurnedUnit == "" ? nil : HKQuantity(unit: HKUnit.init(from: item.totalEnergyBurnedUnit), doubleValue: item.totalEnergyBurned)
+            let totalDistance = item.totalDistanceUnit == "" ? nil : HKQuantity(unit: HKUnit.init(from: item.totalDistanceUnit), doubleValue: item.totalDistance)
+
             hkSample = HKWorkout.init(
                 activityType: item.activityType ?? HKWorkoutActivityType(rawValue: 0)!,
                 start: item.startDate,
                 end: item.endDate,
                 duration: HKQuantity(unit: HKUnit.init(from: item.unit!), doubleValue: item.value).doubleValue(for: HKUnit.second()),
-                totalEnergyBurned: HKQuantity(unit: HKUnit.init(from: item.totalEnergyBurnedUnit), doubleValue: item.totalEnergyBurned),
-                totalDistance: HKQuantity(unit: HKUnit.init(from: item.totalDistanceUnit), doubleValue: item.totalDistance),
+                totalEnergyBurned: totalEnergyBurned,
+                totalDistance: totalDistance,
                 device: nil,
                 metadata: item.metadata
             )

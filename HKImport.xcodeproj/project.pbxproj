@@ -3,10 +3,13 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 48;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1DBCE6812D19D3E900A18A24 /* Importer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8BA0031FB1D921007C2D4F /* Importer.swift */; };
+		1DBCE6822D19D67C00A18A24 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFB0F18247E164200D61E7F /* Constants.swift */; };
+		1DBCE6832D19D69F00A18A24 /* HKWorkoutActivityType+Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFB0F16247DB00B00D61E7F /* HKWorkoutActivityType+Name.swift */; };
 		4C7D60331FC178FC00BD7FC1 /* export.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C7D60321FC178FC00BD7FC1 /* export.xml */; };
 		4C8B9FD31FB1D757007C2D4F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8B9FD21FB1D757007C2D4F /* AppDelegate.swift */; };
 		4C8B9FD51FB1D757007C2D4F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8B9FD41FB1D757007C2D4F /* ViewController.swift */; };
@@ -19,7 +22,18 @@
 		4DFB0F19247E164200D61E7F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFB0F18247E164200D61E7F /* Constants.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		1DBCE67C2D19D2EC00A18A24 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4C8B9FC71FB1D757007C2D4F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4C8B9FCE1FB1D757007C2D4F;
+			remoteInfo = HKImport;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		1DBCE6782D19D2EC00A18A24 /* HKImportTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HKImportTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C7D60321FC178FC00BD7FC1 /* export.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = export.xml; sourceTree = "<group>"; };
 		4C8B9FCF1FB1D757007C2D4F /* HKImport.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HKImport.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C8B9FD21FB1D757007C2D4F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -35,7 +49,18 @@
 		4DFB0F18247E164200D61E7F /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		1DBCE6792D19D2EC00A18A24 /* HKImportTests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = HKImportTests; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
+
 /* Begin PBXFrameworksBuildPhase section */
+		1DBCE6752D19D2EC00A18A24 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4C8B9FCC1FB1D757007C2D4F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -52,6 +77,7 @@
 			children = (
 				4C8B9FD11FB1D757007C2D4F /* HKImport */,
 				4D280C19247B80D500D9162E /* Data */,
+				1DBCE6792D19D2EC00A18A24 /* HKImportTests */,
 				4C8B9FD01FB1D757007C2D4F /* Products */,
 				4C8BA0081FB1EA45007C2D4F /* Frameworks */,
 			);
@@ -61,6 +87,7 @@
 			isa = PBXGroup;
 			children = (
 				4C8B9FCF1FB1D757007C2D4F /* HKImport.app */,
+				1DBCE6782D19D2EC00A18A24 /* HKImportTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -101,6 +128,29 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		1DBCE6772D19D2EC00A18A24 /* HKImportTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1DBCE6802D19D2EC00A18A24 /* Build configuration list for PBXNativeTarget "HKImportTests" */;
+			buildPhases = (
+				1DBCE6742D19D2EC00A18A24 /* Sources */,
+				1DBCE6752D19D2EC00A18A24 /* Frameworks */,
+				1DBCE6762D19D2EC00A18A24 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1DBCE67D2D19D2EC00A18A24 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				1DBCE6792D19D2EC00A18A24 /* HKImportTests */,
+			);
+			name = HKImportTests;
+			packageProductDependencies = (
+			);
+			productName = HKImportTests;
+			productReference = 1DBCE6782D19D2EC00A18A24 /* HKImportTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		4C8B9FCE1FB1D757007C2D4F /* HKImport */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4C8B9FFA1FB1D757007C2D4F /* Build configuration list for PBXNativeTarget "HKImport" */;
@@ -125,10 +175,14 @@
 		4C8B9FC71FB1D757007C2D4F /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0900;
+				LastSwiftUpdateCheck = 1610;
 				LastUpgradeCheck = 1300;
 				ORGANIZATIONNAME = "boaz saragossi";
 				TargetAttributes = {
+					1DBCE6772D19D2EC00A18A24 = {
+						CreatedOnToolsVersion = 16.1;
+						TestTargetID = 4C8B9FCE1FB1D757007C2D4F;
+					};
 					4C8B9FCE1FB1D757007C2D4F = {
 						CreatedOnToolsVersion = 9.0;
 						LastSwiftMigration = 1150;
@@ -155,11 +209,19 @@
 			projectRoot = "";
 			targets = (
 				4C8B9FCE1FB1D757007C2D4F /* HKImport */,
+				1DBCE6772D19D2EC00A18A24 /* HKImportTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		1DBCE6762D19D2EC00A18A24 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4C8B9FCD1FB1D757007C2D4F /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -194,6 +256,16 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		1DBCE6742D19D2EC00A18A24 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1DBCE6832D19D69F00A18A24 /* HKWorkoutActivityType+Name.swift in Sources */,
+				1DBCE6812D19D3E900A18A24 /* Importer.swift in Sources */,
+				1DBCE6822D19D67C00A18A24 /* Constants.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4C8B9FCB1FB1D757007C2D4F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -207,6 +279,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		1DBCE67D2D19D2EC00A18A24 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4C8B9FCE1FB1D757007C2D4F /* HKImport */;
+			targetProxy = 1DBCE67C2D19D2EC00A18A24 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		4C8B9FD61FB1D757007C2D4F /* Main.storyboard */ = {
@@ -228,6 +308,58 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		1DBCE67E2D19D2EC00A18A24 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = io.entire.hkimporttests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HKImport.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/HKImport";
+			};
+			name = Debug;
+		};
+		1DBCE67F2D19D2EC00A18A24 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = io.entire.hkimporttests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HKImport.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/HKImport";
+			};
+			name = Release;
+		};
 		4C8B9FF81FB1D757007C2D4F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -336,7 +468,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -349,7 +482,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Q25LVLEHFB;
 				INFOPLIST_FILE = HKImport/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = io.entire.hkimport;
 				PRODUCT_NAME = HKImport;
 				SWIFT_VERSION = 5.0;
@@ -365,7 +501,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Q25LVLEHFB;
 				INFOPLIST_FILE = HKImport/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = io.entire.hkimport;
 				PRODUCT_NAME = HKImport;
 				SWIFT_VERSION = 5.0;
@@ -376,6 +515,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		1DBCE6802D19D2EC00A18A24 /* Build configuration list for PBXNativeTarget "HKImportTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1DBCE67E2D19D2EC00A18A24 /* Debug */,
+				1DBCE67F2D19D2EC00A18A24 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		4C8B9FCA1FB1D757007C2D4F /* Build configuration list for PBXProject "HKImport" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
