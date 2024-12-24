@@ -1,0 +1,15 @@
+{
+  "originHash" : "8424f3ff1254113210668063ca03d23832186f2bb0decb01db59a5c8121ed8a5",
+  "pins" : [
+    {
+      "identity" : "exceptioncatcher",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/sindresorhus/ExceptionCatcher",
+      "state" : {
+        "revision" : "3cd1997e3663078812efca8652af06104b5160bb",
+        "version" : "2.1.0"
+      }
+    }
+  ],
+  "version" : 3
+}

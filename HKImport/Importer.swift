@@ -9,6 +9,7 @@
 import UIKit
 import HealthKit
 import os.log
+import ExceptionCatcher
 
 extension CustomStringConvertible {
     var description: String {
@@ -27,8 +28,6 @@ class HealthRecord: CustomStringConvertible {
     var type: String = String()
     var value: Double = 0
     var unit: String?
-    var sourceName: String = String()
-    var sourceVersion: String = String()
     var startDate: Date = Date()
     var endDate: Date = Date()
     var creationDate: Date = Date()
@@ -96,6 +95,8 @@ class Importer: NSObject, XMLParserDelegate {
             parseMetaDataFromAttributes(attributeDict)
         } else if elementName == "Workout" {
             parseWorkoutFromAttributes(attributeDict)
+        } else if elementName == "WorkoutStatistics" {
+            parseWorkoutStatisticsFromAttributes(attributeDict)
         } else {
             return
         }
@@ -103,8 +104,6 @@ class Importer: NSObject, XMLParserDelegate {
 
     fileprivate func parseRecordFromAttributes(_ attributeDict: [String: String]) {
         currentRecord.type = attributeDict["type"]!
-        currentRecord.sourceName = attributeDict["sourceName"] ??  ""
-        currentRecord.sourceVersion = attributeDict["sourceVersion"] ??  ""
         currentRecord.value = Double(attributeDict["value"] ?? "0") ?? 0
         currentRecord.unit = attributeDict["unit"] ?? ""
         if let date = dateFormatter.date(from: attributeDict["startDate"]!) {
@@ -122,36 +121,37 @@ class Importer: NSObject, XMLParserDelegate {
     }
 
     fileprivate func parseMetaDataFromAttributes(_ attributeDict: [String: String]) {
-        var key: String?
+        guard let key = attributeDict["key"] else { return }
+        guard let attributeValue = attributeDict["value"] else { return }
+
+        if key == HKMetadataKeySyncIdentifier || key == HKMetadataKeySyncVersion { return }
+
         var value: Any?
-        for (attributeKey, attributeValue) in attributeDict {
-            if attributeKey == "key" {
-                key = attributeValue
-            }
-            if attributeKey == "value" {
-                if let intValue = Int(attributeValue) {
-                    value = intValue
-                } else {
-                    value = attributeValue
-                }
-                if attributeValue.hasSuffix("%") {
-                    let components = attributeValue.split(separator: " ")
-                    value = HKQuantity.init(unit: .percent(), doubleValue: (numberFormatter.number(from: String(components.first!))!.doubleValue))
-                }
-            }
+        let valueParts = attributeValue.components(separatedBy: " ")
+        if valueParts.count == 2,
+           let num = numberFormatter.number(from: valueParts.first!),
+           let unit = try? ExceptionCatcher.catch(callback: { HKUnit(from: valueParts.last!) }) {
+            value = HKQuantity(unit: unit, doubleValue: num.doubleValue)
+        } else if let date = dateFormatter.date(from: attributeValue) {
+            value = date
+        } else if let number = numberFormatter.number(from: attributeValue) {
+            value = number.intValue == Int(number.doubleValue) ? number.intValue : number.doubleValue
+        } else {
+            value = attributeValue
         }
 
-        currentRecord.metadata = [String: Any]()
-        if let key = key, let value = value, key != "HKMetadataKeySyncIdentifier" {
-            currentRecord.metadata?[key] = value
+        if currentRecord.metadata == nil {
+            currentRecord.metadata = [String: Any]()
+        }
+
+        if value != nil {
+            currentRecord.metadata?[key] = value!
         }
     }
 
     fileprivate func parseWorkoutFromAttributes(_ attributeDict: [String: String]) {
         currentRecord.type = HKObjectType.workoutType().identifier
         currentRecord.activityType = HKWorkoutActivityType.activityTypeFromString(attributeDict["workoutActivityType"] ?? "")
-        currentRecord.sourceName = attributeDict["sourceName"] ??  ""
-        currentRecord.sourceVersion = attributeDict["sourceVersion"] ??  ""
         currentRecord.value = Double(attributeDict["duration"] ?? "0") ?? 0
         currentRecord.unit = attributeDict["durationUnit"] ?? ""
         currentRecord.totalDistance = Double(attributeDict["totalDistance"] ?? "0") ?? 0
@@ -169,6 +169,22 @@ class Importer: NSObject, XMLParserDelegate {
         }
         if let date = dateFormatter.date(from: attributeDict["creationDate"] ?? "") {
             currentRecord.creationDate = date
+        }
+    }
+
+    fileprivate func parseWorkoutStatisticsFromAttributes(_ attributeDict: [String: String]) {
+        let value = Double(attributeDict["sum"] ?? "0") ?? 0
+        guard let unit = attributeDict["unit"] else { return }
+
+        switch attributeDict["type"] {
+        case "HKQuantityTypeIdentifierActiveEnergyBurned":
+            self.currentRecord.totalEnergyBurned = value
+            self.currentRecord.totalEnergyBurnedUnit = unit
+        case "HKQuantityTypeIdentifierDistanceWalkingRunning":
+            self.currentRecord.totalDistance = value
+            self.currentRecord.totalDistanceUnit = unit
+        default:
+            return
         }
     }
 
