@@ -174,8 +174,9 @@
 		4C8B9FC71FB1D757007C2D4F /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 1610;
-				LastUpgradeCheck = 1300;
+				LastUpgradeCheck = 1620;
 				ORGANIZATIONNAME = "boaz saragossi";
 				TargetAttributes = {
 					1DBCE6772D19D2EC00A18A24 = {
@@ -240,6 +241,7 @@
 /* Begin PBXShellScriptBuildPhase section */
 		4D280C18247B7A2200D9162E /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
