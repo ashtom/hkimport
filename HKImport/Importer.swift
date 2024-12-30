@@ -253,7 +253,7 @@ class Importer: NSObject, XMLParserDelegate {
             os_log("Didn't catch this item: %@", item.description)
         }
         if let hkSample = hkSample,
-            (authorizedTypes[hkSample.sampleType] ?? false || (self.healthStore?.authorizationStatus(for: hkSample.sampleType) == HKAuthorizationStatus.sharingAuthorized)) {
+            authorizedTypes[hkSample.sampleType] ?? false || (self.healthStore?.authorizationStatus(for: hkSample.sampleType) == HKAuthorizationStatus.sharingAuthorized) {
             authorizedTypes[hkSample.sampleType] = true
             allSamples.append(hkSample)
             successBlock()
