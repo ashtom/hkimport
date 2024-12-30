@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1D50BFCA2D1B1CDE008E4E84 /* ExceptionCatcher in Frameworks */ = {isa = PBXBuildFile; productRef = 1D50BFC92D1B1CDE008E4E84 /* ExceptionCatcher */; };
 		4C7D60331FC178FC00BD7FC1 /* export.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C7D60321FC178FC00BD7FC1 /* export.xml */; };
 		4C8B9FD31FB1D757007C2D4F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8B9FD21FB1D757007C2D4F /* AppDelegate.swift */; };
 		4C8B9FD51FB1D757007C2D4F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8B9FD41FB1D757007C2D4F /* ViewController.swift */; };
@@ -63,6 +64,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4C8BA00A1FB1EA45007C2D4F /* HealthKit.framework in Frameworks */,
+				1D50BFCA2D1B1CDE008E4E84 /* ExceptionCatcher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -201,6 +203,9 @@
 				Base,
 			);
 			mainGroup = 4C8B9FC61FB1D757007C2D4F;
+			packageReferences = (
+				1D50BFC82D1B1CDE008E4E84 /* XCRemoteSwiftPackageReference "ExceptionCatcher" */,
+			);
 			productRefGroup = 4C8B9FD01FB1D757007C2D4F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -537,6 +542,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		1D50BFC82D1B1CDE008E4E84 /* XCRemoteSwiftPackageReference "ExceptionCatcher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sindresorhus/ExceptionCatcher";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		1D50BFC92D1B1CDE008E4E84 /* ExceptionCatcher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1D50BFC82D1B1CDE008E4E84 /* XCRemoteSwiftPackageReference "ExceptionCatcher" */;
+			productName = ExceptionCatcher;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 4C8B9FC71FB1D757007C2D4F /* Project object */;
 }

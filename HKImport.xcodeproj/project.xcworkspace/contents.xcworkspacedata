@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:/Users/thomi/Projects/hkimp/HKImport.xcodeproj">
+      location = "self:">
    </FileRef>
 </Workspace>
