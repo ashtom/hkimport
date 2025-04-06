@@ -211,7 +211,9 @@ class Importer: NSObject, XMLParserDelegate {
     func saveRecord(item: HealthRecord, withSuccess successBlock: @escaping () -> Void, failure failureBlock: @escaping () -> Void) {
         // HealthKit raises an exception if time between end and start date is > 345600
         let duration = item.endDate.timeIntervalSince(item.startDate)
-        if duration > 345600 || (item.type == "HKQuantityTypeIdentifierHeadphoneAudioExposure" && duration < 0.001) {
+        if duration > 345600 ||
+            (item.type == "HKQuantityTypeIdentifierHeadphoneAudioExposure" && duration < 0.001) ||
+            (item.type == "HKCategoryTypeIdentifierAudioExposureEvent" && Int(item.value) == 0) {
             failureBlock()
             return
         }
