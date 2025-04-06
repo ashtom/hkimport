@@ -265,22 +265,52 @@ class Importer: NSObject, XMLParserDelegate {
     }
 
     func saveAllSamples() {
-        saveSamples(samples: self.allSamples, withSuccess: {}, failure: {})
+        // Chunk the samples and save in batches
+        let chunkSize = 1000
+        let chunks = stride(from: 0, to: allSamples.count, by: chunkSize).map {
+            Array(allSamples[$0..<min($0 + chunkSize, allSamples.count)])
+        }
+
+        saveSamplesInChunks(chunks: chunks, index: 0)
+    }
+
+    private func saveSamplesInChunks(chunks: [[HKSample]], index: Int) {
+        // Base case: if all chunks are processed, stop
+        if index >= chunks.count {
+            os_log("All samples have been saved successfully.")
+            return
+        }
+
+        // Save the current chunk and proceed to the next one
+        saveSamples(samples: chunks[index], withSuccess: {
+            os_log("Successfully saved chunk %d of %d", index + 1, chunks.count)
+            self.saveSamplesInChunks(chunks: chunks, index: index + 1)
+        }, failure: {
+            os_log("Failed to save chunk %d of %d. Proceeding with the next chunk.", index + 1, chunks.count)
+            self.saveSamplesInChunks(chunks: chunks, index: index + 1)
+        })
     }
 
     func saveSamples(samples: [HKSample], withSuccess successBlock: @escaping () -> Void, failure failureBlock: @escaping () -> Void) {
-        self.healthStore?.save(samples, withCompletion: { (success, error) in
+        healthStore?.save(samples) { success, error in
             if !success {
                 if Constants.loggingEnabled {
-                    os_log("An error occured saving the sample. The error was: %@.", error.debugDescription)
+                    if let error = error {
+                        os_log("An error occurred saving the samples. Error: %@", error.localizedDescription)
+                    } else {
+                        os_log("An unknown error occurred saving the samples.")
+                    }
                 }
                 failureBlock()
+                return
             }
+
+            // Update UI and call the success block
             DispatchQueue.main.async {
-                self.writeCounterLabel?.text = "\(Int((self.writeCounterLabel?.text)!)! + samples.count)"
+                self.writeCounterLabel?.text = "\(Int(self.writeCounterLabel?.text ?? "0")! + samples.count)"
             }
             successBlock()
-        })
+        }
     }
 
 }
