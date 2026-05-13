@@ -116,7 +116,7 @@ class Importer: NSObject, XMLParserDelegate {
 
     fileprivate func parseRecordFromAttributes(_ attributeDict: [String: String]) {
         currentRecord.type = attributeDict["type"]!
-        currentRecord.value = Double(attributeDict["value"] ?? "0") ?? 0
+        currentRecord.value = Importer.parseRecordValue(attributeDict["value"], type: attributeDict["type"])
         currentRecord.unit = attributeDict["unit"] ?? ""
         currentRecord.sourceName = attributeDict["sourceName"] ?? ""
         currentRecord.sourceVersion = attributeDict["sourceVersion"]
@@ -132,6 +132,36 @@ class Importer: NSObject, XMLParserDelegate {
         }
         if let date = dateFormatter.date(from: attributeDict["creationDate"]!) {
             currentRecord.creationDate = date
+        }
+    }
+
+    private static func parseRecordValue(_ raw: String?, type: String?) -> Double {
+        guard let raw = raw else { return 0 }
+        if type == HKCategoryTypeIdentifier.sleepAnalysis.rawValue {
+            if let mapped = sleepAnalysisValue(for: raw) { return Double(mapped) }
+            if let value = Double(raw) { return value }
+            if Constants.loggingEnabled { os_log("Skipping unsupported sleep analysis value: %@", raw) }
+            return .nan
+        }
+        return Double(raw) ?? 0
+    }
+    private static func sleepAnalysisValue(for raw: String) -> Int? {
+        switch raw {
+        case "HKCategoryValueSleepAnalysisInBed":
+            return HKCategoryValueSleepAnalysis.inBed.rawValue
+        case "HKCategoryValueSleepAnalysisAsleep",
+             "HKCategoryValueSleepAnalysisAsleepUnspecified":
+            return 1
+        case "HKCategoryValueSleepAnalysisAwake":
+            return HKCategoryValueSleepAnalysis.awake.rawValue
+        case "HKCategoryValueSleepAnalysisAsleepCore":
+            return 3
+        case "HKCategoryValueSleepAnalysisAsleepDeep":
+            return 4
+        case "HKCategoryValueSleepAnalysisAsleepREM":
+            return 5
+        default:
+            return nil
         }
     }
 
@@ -234,7 +264,8 @@ class Importer: NSObject, XMLParserDelegate {
     func saveRecord(item: HealthRecord, withSuccess successBlock: @escaping () -> Void, failure failureBlock: @escaping () -> Void) {
         // HealthKit raises an exception if time between end and start date is > 345600
         let duration = item.endDate.timeIntervalSince(item.startDate)
-        if duration > 345600 ||
+        if item.value.isNaN ||
+            duration > 345600 ||
             (item.type == "HKQuantityTypeIdentifierHeadphoneAudioExposure" && duration < 0.001) ||
             (item.type == "HKCategoryTypeIdentifierAudioExposureEvent" && Int(item.value) == 0) {
             failureBlock()

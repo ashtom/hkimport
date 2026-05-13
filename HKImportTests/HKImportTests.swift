@@ -265,4 +265,65 @@ struct HKImportTests {
         // The imported sample should have the top-level record's metadata, not the nested one.
         #expect(metadata["HKFoodBrandName"] as? String == "13 Chips")
     }
+
+    @Test func sleep_analysis_string_values_are_mapped() async throws {
+        // Apple Health export XML writes sleep analysis values as named strings.
+        // Importer must map these to HKCategoryValueSleepAnalysis raw values rather
+        // than silently coercing them all to 0 (.inBed).
+        let xmlString = """
+<?xml version="1.0" encoding="UTF-8"?>
+<HealthData locale="en_US">
+ <Record type="HKCategoryTypeIdentifierSleepAnalysis" sourceName="Testing" creationDate="2024-12-23 00:00:00 -0600" startDate="2024-12-23 00:00:00 -0600" endDate="2024-12-23 00:10:00 -0600" value="HKCategoryValueSleepAnalysisInBed"/>
+ <Record type="HKCategoryTypeIdentifierSleepAnalysis" sourceName="Testing" creationDate="2024-12-23 00:10:00 -0600" startDate="2024-12-23 00:10:00 -0600" endDate="2024-12-23 00:20:00 -0600" value="HKCategoryValueSleepAnalysisAsleep"/>
+ <Record type="HKCategoryTypeIdentifierSleepAnalysis" sourceName="Testing" creationDate="2024-12-23 00:15:00 -0600" startDate="2024-12-23 00:15:00 -0600" endDate="2024-12-23 00:20:00 -0600" value="HKCategoryValueSleepAnalysisAsleepUnspecified"/>
+ <Record type="HKCategoryTypeIdentifierSleepAnalysis" sourceName="Testing" creationDate="2024-12-23 00:20:00 -0600" startDate="2024-12-23 00:20:00 -0600" endDate="2024-12-23 00:30:00 -0600" value="HKCategoryValueSleepAnalysisAwake"/>
+ <Record type="HKCategoryTypeIdentifierSleepAnalysis" sourceName="Testing" creationDate="2024-12-23 00:30:00 -0600" startDate="2024-12-23 00:30:00 -0600" endDate="2024-12-23 00:40:00 -0600" value="HKCategoryValueSleepAnalysisAsleepCore"/>
+ <Record type="HKCategoryTypeIdentifierSleepAnalysis" sourceName="Testing" creationDate="2024-12-23 00:40:00 -0600" startDate="2024-12-23 00:40:00 -0600" endDate="2024-12-23 00:50:00 -0600" value="HKCategoryValueSleepAnalysisAsleepDeep"/>
+ <Record type="HKCategoryTypeIdentifierSleepAnalysis" sourceName="Testing" creationDate="2024-12-23 00:50:00 -0600" startDate="2024-12-23 00:50:00 -0600" endDate="2024-12-23 01:00:00 -0600" value="HKCategoryValueSleepAnalysisAsleepREM"/>
+</HealthData>
+"""
+        let importer = Importer()
+        importer.authorizedTypes = [HKCategoryType.categoryType(forIdentifier: .sleepAnalysis)!: true]
+
+        let parser = XMLParser(data: xmlString.data(using: .utf8)!)
+        parser.delegate = importer
+        parser.parse()
+
+        try #require(importer.allSamples.count == 7)
+
+        // swiftlint:disable:next force_cast
+        let values = importer.allSamples.map { ($0 as! HKCategorySample).value }
+
+        #expect(values == [
+            HKCategoryValueSleepAnalysis.inBed.rawValue,
+            1,
+            1,
+            HKCategoryValueSleepAnalysis.awake.rawValue,
+            3,
+            4,
+            5
+        ])
+    }
+
+    @Test func unknown_sleep_analysis_string_value_is_skipped() async throws {
+        let xmlString = """
+<?xml version="1.0" encoding="UTF-8"?>
+<HealthData locale="en_US">
+ <Record type="HKCategoryTypeIdentifierSleepAnalysis" sourceName="Testing" creationDate="2024-12-23 00:00:00 -0600" startDate="2024-12-23 00:00:00 -0600" endDate="2024-12-23 00:10:00 -0600" value="HKCategoryValueSleepAnalysisFutureStage"/>
+ <Record type="HKCategoryTypeIdentifierSleepAnalysis" sourceName="Testing" creationDate="2024-12-23 00:10:00 -0600" startDate="2024-12-23 00:10:00 -0600" endDate="2024-12-23 00:20:00 -0600" value="HKCategoryValueSleepAnalysisAwake"/>
+</HealthData>
+"""
+        let importer = Importer()
+        importer.authorizedTypes = [HKCategoryType.categoryType(forIdentifier: .sleepAnalysis)!: true]
+
+        let parser = XMLParser(data: xmlString.data(using: .utf8)!)
+        parser.delegate = importer
+        parser.parse()
+
+        try #require(importer.allSamples.count == 1)
+
+        // swiftlint:disable:next force_cast
+        let value = (importer.allSamples[0] as! HKCategorySample).value
+        #expect(value == HKCategoryValueSleepAnalysis.awake.rawValue)
+    }
 }
