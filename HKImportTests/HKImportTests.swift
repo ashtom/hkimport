@@ -123,6 +123,7 @@ struct HKImportTests {
         let expectedStartDate = buildDate(year: 2024, month: 12, day: 23, hour: 6, minute: 38, second: 53)
         let expectedEndDate = buildDate(year: 2024, month: 12, day: 23, hour: 7, minute: 9, second: 16)
         let expectedMetadataKeys = Set([
+            "HKImportOriginalSourceName",
             HKMetadataKeyIndoorWorkout,
             HKMetadataKeyWeatherTemperature,
             HKMetadataKeyTimeZone,
@@ -174,7 +175,8 @@ struct HKImportTests {
         let expectedStartDate = buildDate(year: 2024, month: 12, day: 23, hour: 19, minute: 0, second: 0)
         let expectedEndDate = buildDate(year: 2024, month: 12, day: 23, hour: 19, minute: 0, second: 0)
         let expectedMetadataKeys = Set([
-            "HKFoodBrandName"
+            "HKFoodBrandName",
+            "HKImportOriginalSourceName"
         ])
 
         #expect(sample.quantityType.identifier == HKQuantityTypeIdentifier.dietaryFatSaturated.rawValue)
@@ -213,6 +215,7 @@ struct HKImportTests {
         let expectedStartDate = buildDate(year: 2024, month: 12, day: 23, hour: 13, minute: 27, second: 55)
         let expectedEndDate = buildDate(year: 2024, month: 12, day: 23, hour: 13, minute: 27, second: 55)
         let expectedMetadataKeys = Set([
+            "HKImportOriginalSourceName",
             HKMetadataKeyDateOfEarliestDataUsedForEstimate,
             HKMetadataKeyAppleDeviceCalibrated
         ])
